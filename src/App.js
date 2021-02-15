@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import Rocket from './pages/rocket'
+import Navbar from './component/Navbar'
 
 function App() {
   return (
-    <div>
+    <div className="container">
+      <Navbar/>
       <h2>SpaceX center</h2>
       <hr/>
       <Rocket/>

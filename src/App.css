@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -26,13 +26,30 @@
 
 .App-link {
   color: #61dafb;
+} */
+.container{
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.logo img{
+  width: 250px;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.menu{
+  display: flex;
+
+}
+
+.menu li{
+  list-style: none;
+  margin: 0 10px;
 }
