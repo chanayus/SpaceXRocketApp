@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
+import { Link, useLocation } from "react-router-dom";
 import styled from 'styled-components'
 const Launches = () => {
     const [launches, setLaunches] = useState([])
@@ -76,7 +77,7 @@ const Launches = () => {
         <Fragment>
             <DivContainer className="content-flex" style={{backgroundImage: `url(https://images.unsplash.com/photo-1457364983758-510f8afa9f5f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)`}}>
                 <div className="container">
-                    <center><H1>LAUNCHES</H1></center>              
+                    <H1>LAUNCHES</H1>     
                 </div> 
             </DivContainer>
             <div className="container">
@@ -85,7 +86,7 @@ const Launches = () => {
                         <div>
                             Sort By :            
                             <button onClick={() => yearFilter()} style={{ background: year ? "#EEE" : "transparent", color: year ? "#111" : "#EEE"}}>Launch Year</button>
-                            <button onClick={() => successFilter()} style={{background: success ? "#11CC11" : success === false ? "#CC1111" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
+                            <button onClick={() => successFilter()} style={{background: success ? "rgb(102, 173, 93)" : success === false ? "rgb(199, 38, 38)" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
                         </div>       
                 </FilterDiv>
                 <FlexContainer>
@@ -95,14 +96,19 @@ const Launches = () => {
                         :
                         launches.map((value, index)=>{
                             return(
-                                <Card key={index}>
-                                    <center><img src={value.links.mission_patch_small} alt=""/></center>
-                                    <div style={{display: "flex", justifyContent: "center", flexDirection: "column"}}>
-                                        <h3>{value.rocket.rocket_name}</h3>
-                                        <h3>{value.launch_year}</h3>
-                                        {value.launch_success ? <h3 style={{color: "#11CC11"}}>Launch Success</h3> : <h3 style={{color: "#CC1111"}}>Launch Fail</h3>}
-                                    </div>
-                                </Card>    
+                                    <Card key={index}>
+                                        <div>
+                                            <img src={value.links.mission_patch_small} alt=""/>
+                                        </div>    
+                                        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1}}>
+                                            <h3>{value.rocket.rocket_name}</h3>
+                                            <h3>{value.launch_year}</h3>
+                                            {value.launch_success ? <h3 style={{color: "rgb(102, 173, 93)"}}>Launch Success</h3> : <h3 style={{color: "rgb(199, 38, 38)"}}>Launch Fail</h3>}
+                                            <Link to={{pathname: `/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
+                                                <ViewButton>View Detail</ViewButton> 
+                                            </Link>
+                                        </div>
+                                    </Card>    
                             )
                         })
                     }
@@ -120,36 +126,49 @@ const DivContainer = styled.div`
 const H1 = styled.h1`
     font-size: 10.5vmin;
     color: #FFF;
-    padding: 0;
+    padding: 0 0 0 5%;
 `
 const Card = styled.div`
-    border-radius: 10px;
+    border-radius: 15px;
     background: #222;
-    width: 400px;
-    margin: 30px 10px;
+    margin: 20px 10px;
+    width: 600px;
+    text-decoration: none;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     transition: 0.25s;
+
     display: flex;
-    img{
-        width: 200px;
+    img{    
+        width: 180px;
         padding: 5px;
     }
     h3{
         color: #FFF;
         margin: 5px 0;
-        padding: 0 10px;
         font-weight: 300;
     }
-    :hover{
-        background: #444;
-    }
-    
 `
+
+const ViewButton  = styled.button`
+    background: transparent;
+    border-radius: 7px;
+    transition: 0.25s;
+    color: #FFF;
+    padding: 5px 5%;
+    margin: 5px 0;
+    width: 100%;
+    border: 2px solid #AAA;
+    :hover{
+        background: #FFF;
+        color: #111;
+
+    }
+`
+
 const FlexContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 10px;
 `
 
 const FilterDiv = styled.div`
@@ -177,9 +196,11 @@ const FilterDiv = styled.div`
 `
 
 const NoResult = styled.h1`
-    font-size: 8vmin;
-    font-weight: 300;
+    font-size: 5vmin;
+    font-weight: 200;
     color: #AAA; 
     padding: 70px 0;
 `
+
+
 export default Launches
