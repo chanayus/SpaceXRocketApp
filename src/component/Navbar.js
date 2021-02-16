@@ -1,6 +1,9 @@
 import logo from '../img/spXlogo.png'
 import styled from 'styled-components'
 import React, { useEffect, useState } from 'react';
+import {
+  Link
+} from 'react-router-dom';
 const Navbar = () => {
   const [scrollTop, SetscrollTop] = useState(window.scrollY)
   useEffect(() => {
@@ -15,22 +18,22 @@ const Navbar = () => {
     };
   }, []);
 
-  const backgroundNav = () =>{
-    if(scrollTop === 0){
+  const backgroundNav = () => {
+    if (scrollTop === 0) {
       return "rgba(0, 0, 99, 0)"
     }
-    else{
+    else {
       return "rgba(0, 0, 0, 0.75) "
     }
   }
   return (
-    <nav style={{background: backgroundNav()}}>
+    <nav style={{ background: backgroundNav() }}>
       <div className="logo">
-        <img src={logo} alt="logo" style={{maxWidth: "100%"}}/>
+        <Link to="/"><img src={logo} alt="logo" style={{ maxWidth: "100%" }} /></Link>
       </div>
       <ul className="menu">
-          <Li>Rockets</Li>
-          <Li>Launches</Li>
+        <Link to="/rockets"><li>Rockets</li></Link>
+        <Link to="/launches"><li>Launches</li></Link>
       </ul>
     </nav>
   );

@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import wallpaper from '../img/spaceX-wall.jpg'
 import starlinkImg from '../img/starlink-wall.jpg'
 import starlinkLogo from '../img/starlink-logo.png'
+import Navbar from '../component/Navbar'
 const Home = () => {
     return (
         <div>
+            <Navbar/>
             <DivContainer className="content-flex" style={{backgroundImage: `url(${wallpaper})`, justifyContent: "flex-start"}}>
                 <FlexDiv className="container">
                     <div>

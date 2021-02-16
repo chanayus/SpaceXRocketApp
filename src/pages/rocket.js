@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import React,{ useEffect, useState } from 'react'
+import Navbar from '../component/Navbar'
 const Rocket = () => {
     const [rockets, setRockets] = useState([])
     useEffect(
@@ -13,12 +14,17 @@ const Rocket = () => {
         }, []
     );
     return (
-        <ul>
-            {rockets.map((r) => 
-            (
-                <li>{r.rocket_name}</li>
-            ))}
-        </ul>
+        <div>
+            <Navbar/>
+            <div>
+            <ul>
+                {rockets.map((r) => 
+                (
+                    <li>{r.rocket_name}</li>
+                ))}
+            </ul>
+            </div>
+        </div>
     )
 }
 export default Rocket
