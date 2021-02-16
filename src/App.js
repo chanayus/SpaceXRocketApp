@@ -10,6 +10,7 @@ import {
 function App() {
   return (
     <div>
+      <Navbar/>
       <Route exact path="/" component={Home}/>
       <Route path="/rockets" component={Rocket}/>
       <Route path="/launches" component={Launches}/>

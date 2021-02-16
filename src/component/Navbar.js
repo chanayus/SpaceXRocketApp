@@ -28,14 +28,26 @@ const Navbar = () => {
   }
   return (
     <nav style={{ background: backgroundNav() }}>
+    <div className="nav-flex">
       <div className="logo">
-        <Link to="/"><img src={logo} alt="logo" style={{ maxWidth: "100%" }} /></Link>
+          <Link to="/">
+            <img src={logo} alt="logo" style={{ maxWidth: "100%" }} />
+          </Link>    
       </div>
       <ul className="menu">
-        <Link to="/rockets"><li>Rockets</li></Link>
-        <Link to="/launches"><li>Launches</li></Link>
+        <Li>
+          <Link to="/rockets" style={{textDecoration: "none", color:"white"}}>
+            Rockets
+          </Link>
+        </Li>
+        <Li>
+          <Link to="/launches" style={{textDecoration: "none", color:"white"}}>
+            Launches
+          </Link>
+        </Li>
       </ul>
-    </nav>
+    </div>
+  </nav>
   );
 }
 const Li = styled.li`
