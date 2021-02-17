@@ -22,7 +22,7 @@ const Home = () => {
             <Navbar />
             <DivContainer className="content-flex" style={{ backgroundImage: `url(${"https://farm9.staticflickr.com/8691/28353012603_ab83b6f5aa_o.jpg"})`, justifyContent: "flex-start" }}>
                 <FlexDiv className="container">
-                    <div>
+                    <div style={{width: "80%"}}>
                         <img src={logo} alt="logo" style={{ maxWidth: "100%" }} />
                         <p style={{ color: "#FFF" }}>{info.summary}</p>
                     </div>
