@@ -27,7 +27,7 @@ const Rocket = () => {
                     return (
                         <Card key={index}>
                             <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1 }}>
-                                <Link href="#" style={{textDecoration: "none",textAlign:"center",color:"white"}}>
+                                <Link to={{pathname: `/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",textAlign:"center",color:"white"}}>
                                     <h3 style={{fontWeight:"bold"}}>{value.rocket_name}</h3>
                                     <p style={{textDecoration:"none"}}>{value.country}</p>
                                 </Link>

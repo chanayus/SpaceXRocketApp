@@ -3,6 +3,7 @@ import Rocket from './pages/rocket'
 import Home from './pages/home'
 import Launches from './pages/launches'
 import LaunchDetail from './pages/launchDetail'
+import RocketDetail from './pages/rocketDetail'
 import Navbar from './component/Navbar';
 import {
   Route,
@@ -16,6 +17,7 @@ function App() {
       <Route path="/rockets" component={Rocket}/>
       <Route path="/launches" component={Launches}/>
       <Route path="/launchDetail/:id" component={LaunchDetail}/>
+      <Route path="/rocketDetail/:rocket_id" component={RocketDetail}/>
     </div>
 
   );
