@@ -13,9 +13,9 @@ function App() {
     <div>
       <Navbar/>
       <Route exact path="/SpaceXRocketApp" component={Home}/>
-      <Route path="/rockets" component={Rocket}/>
-      <Route path="/launches" component={Launches}/>
-      <Route path="/launchDetail/:id" component={LaunchDetail}/>
+      <Route path="/SpaceXRocketApp/rockets" component={Rocket}/>
+      <Route path="/SpaceXRocketApp/launches" component={Launches}/>
+      <Route path="/SpaceXRocketApp/launchDetail/:id" component={LaunchDetail}/>
     </div>
 
   );

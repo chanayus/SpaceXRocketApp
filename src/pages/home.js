@@ -33,7 +33,7 @@ const Home = () => {
             </DivContainer>
             <DivContainer className="content-flex" style={{ backgroundImage: `url(${starlinkImg})` }}>
                 <FlexDiv className="container">
-                    <div data-aos="fade-up" data-aos-delay="270">
+                    <div data-aos="fade-right" data-aos-delay="270">
                         <img src={starlinkLogo} alt="logo" style={{ maxWidth: "100%" }} />
                         <p style={{ color: "#FFF" }}>Starlink is a satellite internet constellation being constructed by SpaceX providing satellite Internet access.</p>
                     </div>
