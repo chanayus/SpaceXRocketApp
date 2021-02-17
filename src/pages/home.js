@@ -61,15 +61,18 @@ const DivContainer = styled.div`
     padding: 42vmin 20px;
     background-size: cover;
     background-attachment: fixed;
+    
 `
 const FlexDiv = styled.div`
     display: flex;
     flex-wrap: wrap-reverse;
+    
 `
 
 const ImgRocket = styled.img`
     max-width: 100%;
     transition: 0.35s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
 `
 export default Home
