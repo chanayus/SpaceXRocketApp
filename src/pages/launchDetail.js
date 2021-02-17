@@ -2,7 +2,7 @@ import React,{ Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 const LaunchDetail = () => {
-    const [launch, setLaunch] = useState({})
+    const [launch, setLaunch] = useState({"rocket":{"rocket_name": "", "rocket_type": ""}, "links" : {"youtube_id": ""}})
     const { id } = useParams();
 
     useEffect(
@@ -10,20 +10,7 @@ const LaunchDetail = () => {
             const fetchLaunch = async () => {
                 const response = await fetch(`https://api.spacexdata.com/v3/launches/${id}`)
                 const data = await response.json()
-                console.log()
-                setLaunch({
-                    "flight_number": data.flight_number,
-                    "mission_name": data.mission_name,
-                    "launch_year": data.launch_year,
-                    "rocket_name":data.rocket.rocket_name,
-                    "rocket_type":data.rocket.rocket_type,
-                    "launch_success":data.launch_success,
-                    "imageUrl" : data.links.flickr_images[0],
-                    "youtube_id" : data.links.youtube_id,
-                    "launch_date_utc" : data.launch_date_utc,
-                    "detail" : data.details,
-               })
-                
+                setLaunch(data)   
             }
             fetchLaunch()
         }, []
@@ -44,11 +31,11 @@ const LaunchDetail = () => {
                     <LI><b>Mission Name :</b> {launch.mission_name}</LI>
                     <LI><b>Launch Year :</b> {launch.launch_year}</LI>        
                     <LI><b>Launch Date :</b> {launch.launch_date_utc}</LI>
-                    <LI><b>Rocket Name:</b> {launch.rocket_name}</LI>
-                    <LI><b>Rocket Type:</b> {launch.rocket_type}</LI>
+                    <LI><b>Rocket Name:</b> {launch.rocket.rocket_name}</LI>
+                    <LI><b>Rocket Type:</b> {launch.rocket.rocket_type}</LI>
                     <LI><b>Launch Result :</b> {launch.launch_success ? "Success" : "Fail"}</LI>
                 </ul>
-                <iframe src={`https://www.youtube.com/embed/${launch.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
+                <iframe src={`https://www.youtube.com/embed/${launch.links.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
             </div>
         </Fragment>
     )

@@ -6,6 +6,7 @@ body{
   box-sizing: border-box;
   background :#0e0e0e;
   animation: fade 0.75s;
+  color: #FFF;
 }
 
 @keyframes fade{
@@ -19,7 +20,7 @@ body{
 }
 
 .headerContainer{
-  padding: 300px 0;
+  padding: 35vmin 0px;
   background-size: cover;
 }
 .headerText{
@@ -57,7 +58,15 @@ nav{
 
 .menu li{
   list-style: none;
-  margin: 0 0 0 20px;
+  font-size: 1.05rem;
+  margin: 0 0 0 25px;
+}
+
+ul li{
+  list-style: none;
+  font-size: 1.25rem;
+  line-height: 2.5;
+  font-weight: 200;
 }
 
 img{
