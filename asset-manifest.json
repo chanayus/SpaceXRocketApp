@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/SpaceXRocketApp/static/css/main.6072705d.chunk.css",
-    "main.js": "/SpaceXRocketApp/static/js/main.12bada26.chunk.js",
-    "main.js.map": "/SpaceXRocketApp/static/js/main.12bada26.chunk.js.map",
+    "main.js": "/SpaceXRocketApp/static/js/main.a88d9a16.chunk.js",
+    "main.js.map": "/SpaceXRocketApp/static/js/main.a88d9a16.chunk.js.map",
     "runtime-main.js": "/SpaceXRocketApp/static/js/runtime-main.9493afbc.js",
     "runtime-main.js.map": "/SpaceXRocketApp/static/js/runtime-main.9493afbc.js.map",
     "static/css/2.ec02d681.chunk.css": "/SpaceXRocketApp/static/css/2.ec02d681.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.ec02d681.chunk.css",
     "static/js/2.f224e3a3.chunk.js",
     "static/css/main.6072705d.chunk.css",
-    "static/js/main.12bada26.chunk.js"
+    "static/js/main.a88d9a16.chunk.js"
   ]
 }
