@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from 'styled-components'
 const Launches = () => {
     const [launches, setLaunches] = useState([])
@@ -13,7 +13,6 @@ const Launches = () => {
             const fetchLaunches = async () => {
                 const response = await fetch('https://api.spacexdata.com/v3/launches')
                 const data = await response.json()
-                console.log(data)
                 setLaunches(data)
                 setDefaultLaunches(data)
             }
@@ -25,90 +24,80 @@ const Launches = () => {
         setLaunches(defaultLaunches.filter(value =>{
             return value.rocket.rocket_name.toLowerCase().includes(text.toLowerCase())
         }))
-        console.log(launches)
     }, [text])
+
     const yearFilter = () =>{
         resetFilter() 
         if(year){
             const yearSorted = defaultLaunches.sort((a, b) => {return a.launch_year-b.launch_year})
             setLaunches([...yearSorted])
-            filterUpdate(false, setYear)
+            setYear(false)
         }
         else{
             const yearSorted = defaultLaunches.sort((a, b) => {return b.launch_year-a.launch_year})
             setLaunches([...yearSorted])
-            filterUpdate(true, setYear)
+            setYear(true)
         }
     }
-
-
-    const nameFilter = defaultLaunches.filter(value =>{
-        return value.rocket.rocket_name.toLowerCase().includes(text.toLowerCase())
-    })
-
 
     const successFilter = () =>{
         resetFilter()
         if(success){
             const successSort = defaultLaunches.filter((value) => !value.launch_success)
             setLaunches(successSort)
-            filterUpdate(false, setSuccess)
+            setSuccess(false)
         }
         else if(success === false){
             const successSort = defaultLaunches
             setLaunches(successSort)
-            filterUpdate(undefined, setSuccess)
+            setSuccess(undefined)
         }
         else{
             const successSort = defaultLaunches.filter((value) => value.launch_success)
             setLaunches(successSort)
-            filterUpdate(true, setSuccess)
+            setSuccess(true)
         }
     }
 
-    const filterUpdate = (update, setState) =>{
-        setState(update)    
-    }
     const resetFilter = () =>{
         setSuccess(undefined)
         setYear(false)
     }
     return (
         <Fragment>
-            <DivContainer className="content-flex" style={{backgroundImage: `url(https://images.unsplash.com/photo-1457364983758-510f8afa9f5f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)`}}>
+            <div className="headerContainer" style={{backgroundImage: `url(https://images.unsplash.com/photo-1457364983758-510f8afa9f5f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)`}}>
                 <div className="container">
-                    <H1>LAUNCHES</H1>     
+                    <h1 className="headerText">LAUNCHES</h1>     
                 </div> 
-            </DivContainer>
+            </div>
             <div className="container">
                 <FilterDiv>
-                        <input type="text" placeholder="Search Rocket Name" onChange={e => setText(e.target.value)} value={text}/>
-                        <div>
-                            Sort By :            
-                            <button onClick={() => yearFilter()} style={{ background: year ? "#EEE" : "transparent", color: year ? "#111" : "#EEE"}}>Launch Year</button>
-                            <button onClick={() => successFilter()} style={{background: success ? "rgb(102, 173, 93)" : success === false ? "rgb(199, 38, 38)" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
-                        </div>       
+                    <input type="text" placeholder="Search Rocket Name" onChange={e => setText(e.target.value)} value={text}/>
+                    <div>
+                        Sort By :            
+                        <button onClick={() => yearFilter()} style={{ background: year ? "#EEE" : "transparent", color: year ? "#111" : "#EEE"}}>Launch Year</button>
+                        <button onClick={() => successFilter()} style={{background: success ? "rgb(102, 173, 93)" : success === false ? "rgb(199, 38, 38)" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
+                    </div>       
                 </FilterDiv>
                 <FlexContainer>
                     { launches.length == 0 ?
-                        <center><NoResult>No Result</NoResult></center>
-                        
+                        <center><NoResult>No Result</NoResult></center>       
                         :
                         launches.map((value, index)=>{
                             return(
-                                    <Card key={index}>
-                                        <div>
-                                            <img src={value.links.mission_patch_small} alt=""/>
-                                        </div>    
-                                        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1}}>
-                                            <h3>{value.rocket.rocket_name}</h3>
-                                            <h3>{value.launch_year}</h3>
-                                            {value.launch_success ? <h3 style={{color: "rgb(102, 173, 93)"}}>Launch Success</h3> : <h3 style={{color: "rgb(199, 38, 38)"}}>Launch Fail</h3>}
-                                            <Link to={{pathname: `/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
-                                                <ViewButton>View Detail</ViewButton> 
-                                            </Link>
-                                        </div>
-                                    </Card>    
+                                <Card key={index}>
+                                    <div >
+                                        <img src={value.links.mission_patch_small} alt=""/>
+                                    </div>    
+                                    <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1}}>
+                                        <h3>{value.rocket.rocket_name}</h3>
+                                        <h3>{value.launch_year}</h3>
+                                        {value.launch_success ? <h3 style={{color: "rgb(102, 173, 93)"}}>Launch Success</h3> : <h3 style={{color: "rgb(199, 38, 38)"}}>Launch Fail</h3>}
+                                        <Link to={{pathname: `/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
+                                            <ViewButton>View Detail</ViewButton> 
+                                        </Link>
+                                    </div>
+                                </Card>    
                             )
                         })
                     }
@@ -119,18 +108,10 @@ const Launches = () => {
 
 
 }
-const DivContainer = styled.div`
-    padding: 300px 0;
-    background-size: cover;
-`
-const H1 = styled.h1`
-    font-size: 10.5vmin;
-    color: #FFF;
-    padding: 0 0 0 5%;
-`
 const Card = styled.div`
-    border-radius: 15px;
-    background: #222;
+    border-radius: 3px;
+    background-color: #191919;
+
     margin: 20px 10px;
     width: 600px;
     text-decoration: none;
@@ -139,8 +120,9 @@ const Card = styled.div`
 
     display: flex;
     img{    
-        width: 180px;
+        width: 140px;
         padding: 5px;
+        margin-top: 10px;
     }
     h3{
         color: #FFF;
@@ -151,7 +133,7 @@ const Card = styled.div`
 
 const ViewButton  = styled.button`
     background: transparent;
-    border-radius: 7px;
+    border-radius: 3px;
     transition: 0.25s;
     color: #FFF;
     padding: 5px 5%;
@@ -201,6 +183,5 @@ const NoResult = styled.h1`
     color: #AAA; 
     padding: 70px 0;
 `
-
 
 export default Launches
