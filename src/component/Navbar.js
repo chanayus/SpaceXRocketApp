@@ -37,12 +37,12 @@ const Navbar = () => {
       </div>
       <ul className="menu">
         <Li>
-          <Link to="/rockets" style={{textDecoration: "none", color:"white"}}>
+          <Link to="/SpaceXRocketApp/rockets" style={{textDecoration: "none", color:"white"}}>
             Rockets
           </Link>
         </Li>
         <Li>
-          <Link to="/launches" style={{textDecoration: "none", color:"white"}}>
+          <Link to="/SpaceXRocketApp/launches" style={{textDecoration: "none", color:"white"}}>
             Launches
           </Link>
         </Li>
