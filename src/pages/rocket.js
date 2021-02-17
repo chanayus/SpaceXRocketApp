@@ -1,5 +1,6 @@
-import React,{ useEffect, useState } from 'react'
-import Navbar from '../component/Navbar'
+import { Fragment, useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
+import styled from 'styled-components'
 const Rocket = () => {
     const [rockets, setRockets] = useState([])
     useEffect(
@@ -14,17 +15,72 @@ const Rocket = () => {
         }, []
     );
     return (
-        <div>
-            <Navbar/>
-            <div>
-            <ul>
-                {rockets.map((r) => 
-                (
-                    <li>{r.rocket_name}</li>
-                ))}
-            </ul>
+        <Fragment>
+            <div className="headerContainer" style={{ backgroundImage: `url(https://i1.wp.com/bilmediklerimiz.com/storage/2021/02/analist-buyuk-kazanclar-saglayabilecegini-soyledigi-5-kucuk-altcoin-cevherini-siraliyor-CE9SiMLr.jpg)` }}>
+                <div className="container">
+                    <h1 className="headerText">ROCKETS</h1>
+                </div>
             </div>
-        </div>
+            <div className="container">
+            <FlexContainer>
+                {rockets.map((value, index) => {
+                    return (
+                        <Card key={index}>
+                            <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1 }}>
+                                <Link href="#" style={{textDecoration: "none",textAlign:"center",color:"white"}}>
+                                    <h3 style={{fontWeight:"bold"}}>{value.rocket_name}</h3>
+                                    <p style={{textDecoration:"none"}}>{value.country}</p>
+                                </Link>
+                            </div>
+                        </Card>
+                    )
+                })}
+                </FlexContainer>
+            </div>
+        </Fragment>
     )
 }
+
+const Card = styled.div`
+    border-radius: 3px;
+    background-color: #191919;
+
+    margin: 20px 10px 0px 0px;
+    width: 40%;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: 0.25s;
+
+    display: flex;
+    img{    
+        width: 140px;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    h3{
+        color: #FFF;
+        margin: 5px 0;
+        font-weight: 300;
+    }
+`
+const FlexContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
+const ViewButton = styled.button`
+    background: transparent;
+    border-radius: 3px;
+    transition: 0.25s;
+    color: #FFF;
+    padding: 5px 5%;
+    margin: 5px 0;
+    width: 100%;
+    border: 2px solid #AAA;
+    :hover{
+        background: #FFF;
+        color: #111;
+
+    }
+`
 export default Rocket
