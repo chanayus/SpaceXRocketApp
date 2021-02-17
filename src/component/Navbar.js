@@ -24,7 +24,7 @@ const Navbar = () => {
       return "rgba(0, 0, 99, 0)"
     }
     else {
-      return "rgba(0, 0, 0, 0.75) "
+      return "rgba(0, 0, 0, 0.45) "
     }
   }
   return (
@@ -53,6 +53,11 @@ const Navbar = () => {
 }
 const Li = styled.li`
   color: #FFF;
+  transition: 0.25s;
+  border-bottom: 2px solid transparent;
+  :hover{
+    border-bottom: 2px solid #fff;
+  }
 `
 
 export default Navbar;

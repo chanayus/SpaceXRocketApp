@@ -11,6 +11,7 @@ const LaunchDetail = () => {
                 const response = await fetch(`https://api.spacexdata.com/v3/launches/${id}`)
                 const data = await response.json()
                 setLaunch(data)   
+                console.log(data)
             }
             fetchLaunch()
         }, []
@@ -25,7 +26,7 @@ const LaunchDetail = () => {
             <div className="container" style={{paddingBottom: 150}}>
                 <h1 className="headerText">Launch Detail</h1>
                 <hr/>
-                <P>{launch.detail}</P>
+                <P>{launch.details}</P>
                 <ul style={{padding: 0}}>
                     <LI><b>Flight Number </b>: {launch.flight_number}</LI>
                     <LI><b>Mission Name :</b> {launch.mission_name}</LI>
