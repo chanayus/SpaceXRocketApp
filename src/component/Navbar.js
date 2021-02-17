@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav style={{ background: backgroundNav() }}>
     <div className="nav-flex">
       <div className="logo">
-          <Link to="/">
+          <Link to="/SpaceXRocketApp">
             <img src={logo} alt="logo" style={{ maxWidth: "100%" }} />
           </Link>    
       </div>

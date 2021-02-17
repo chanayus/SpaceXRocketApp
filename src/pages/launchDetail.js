@@ -2,7 +2,7 @@ import React,{ Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 const LaunchDetail = () => {
-    const [launch, setLaunch] = useState({"rocket":{"rocket_name": "", "rocket_type": ""}, "links" : {"youtube_id": ""}})
+    const [launch, setLaunch] = useState({"rocket":{"rocket_name": "", "rocket_type": ""}, "links" : {"youtube_id": "","flickr_images" : [""] }})
     const { id } = useParams();
 
     useEffect(
@@ -18,7 +18,7 @@ const LaunchDetail = () => {
     );
     return (
         <Fragment>
-            <div className="headerContainer" style={{backgroundImage: `url(${launch.imageUrl === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.imageUrl})`}}>
+            <div className="headerContainer" style={{backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})`}}>
                 <div className="container">
                     <h1 className="headerText" style={{width: "70%"}}>{launch.mission_name}</h1>  
                 </div> 

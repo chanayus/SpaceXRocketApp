@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <Route exact path="/" component={Home}/>
+      <Route exact path="/SpaceXRocketApp" component={Home}/>
       <Route path="/rockets" component={Rocket}/>
       <Route path="/launches" component={Launches}/>
       <Route path="/launchDetail/:id" component={LaunchDetail}/>
