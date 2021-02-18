@@ -28,10 +28,9 @@ const Rocket = () => {
                 {rockets.map((value, index) => {
                     return (
                         <Card key={index}>
-                            <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1 }}>
-                                <Link to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",textAlign:"center",color:"white"}}>
+                            <div style={{ display: "flex", justifyContent: "center", flexDirection: "row", flex: 1 }}>
+                                <Link to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",textAlign:"center",color:"white",padding:10}}>
                                     <h3 style={{fontWeight:"bold"}}>{value.rocket_name}</h3>
-                                    <p style={{textDecoration:"none"}}>{value.country}</p>
                                 </Link>
                             </div>
                         </Card>
@@ -48,7 +47,7 @@ const Card = styled.div`
     background-color: #191919;
 
     margin: 20px 10px 0px 0px;
-    width: 40%;
+    width: 50%;
     text-decoration: none;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     transition: 0.25s;
