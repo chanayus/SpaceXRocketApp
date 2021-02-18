@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Aos from "aos";
 import styled from 'styled-components'
 import { motion } from "framer-motion"
+import rocketBg from '../img/rocket-bg.webp'
+
 const Rocket = () => {
     const [rockets, setRockets] = useState([])
     useEffect(
@@ -10,7 +12,6 @@ const Rocket = () => {
             const fetchRockets = async () => {
                 const response = await fetch('https://api.spacexdata.com/v3/rockets')
                 const data = await response.json()
-                console.log(data)
                 setRockets(data)
             }
             Aos.init({duration: 500, delay: 100})
@@ -19,7 +20,7 @@ const Rocket = () => {
     );
     return (
         <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
-            <div className="headerContainer" style={{ backgroundImage: `url(https://i1.wp.com/bilmediklerimiz.com/storage/2021/02/analist-buyuk-kazanclar-saglayabilecegini-soyledigi-5-kucuk-altcoin-cevherini-siraliyor-CE9SiMLr.jpg)` }}>
+            <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg})` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
                     <h1 className="headerText">ROCKETS</h1>
@@ -30,8 +31,8 @@ const Rocket = () => {
                 <FlexContainer data-aos="fade" data-aos-delay="200" data-aos-once="true">
                 {rockets.map((value, index) => {
                     return (
-                        <Link to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",width: "50vmin"}}>                 
-                            <Card key={index}> 
+                        <Link key={index} to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",width: "50vmin"}}>                 
+                            <Card > 
                                 <h1>{value.id}</h1>                     
                                 <h3>{value.rocket_name}</h3>
                             </Card>
