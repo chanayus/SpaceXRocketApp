@@ -19,12 +19,14 @@ const Rocket = () => {
     return (
         <Fragment>
             <div className="headerContainer" style={{ backgroundImage: `url(https://i1.wp.com/bilmediklerimiz.com/storage/2021/02/analist-buyuk-kazanclar-saglayabilecegini-soyledigi-5-kucuk-altcoin-cevherini-siraliyor-CE9SiMLr.jpg)` }}>
-                <div className="container">
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
+                    <div className="container">
                     <h1 className="headerText">ROCKETS</h1>
+                    </div>
                 </div>
             </div>
             <div className="container">
-            <FlexContainer data-aos="fade" data-aos-delay="200">
+                <FlexContainer data-aos="fade" data-aos-delay="200" data-aos-once="true">
                 {rockets.map((value, index) => {
                     return (
                         <Card key={index}>
@@ -63,25 +65,15 @@ const Card = styled.div`
         margin: 5px 0;
         font-weight: 300;
     }
+    :hover{
+        background-color: #252525;
+
+    }
 `
 const FlexContainer = styled.div`
+    padding: 50px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-`
-const ViewButton = styled.button`
-    background: transparent;
-    border-radius: 3px;
-    transition: 0.25s;
-    color: #FFF;
-    padding: 5px 5%;
-    margin: 5px 0;
-    width: 100%;
-    border: 2px solid #AAA;
-    :hover{
-        background: #FFF;
-        color: #111;
-
-    }
 `
 export default Rocket

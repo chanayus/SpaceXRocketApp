@@ -20,9 +20,12 @@ const LaunchDetail = () => {
     return (
         <Fragment>
             <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})` }}>
-                <div className="container">
-                    <h1 className="headerText" style={{ width: "70%" }}>{launch.mission_name}</h1>
-                    <h2 className="text-shadow" style={{cursor: "pointer"}}> {launch.rocket.rocket_name} | <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }} style={{ textDecoration: "none", color: "yellow" }}>View Rocket</Link></h2>
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.225)"}}>
+                    <div className="container">
+                        <h1 className="headerText" style={{ width: "70%", marginBottom: 0 }}>{launch.mission_name}</h1>
+                        <h2 className="text-shadow" style={{cursor: "pointer", marginTop: 10}}> {launch.rocket.rocket_name}</h2>
+                        <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
+                    </div>
                 </div>
             </div>
             <div className="container" style={{ paddingBottom: 10 }}>
@@ -44,14 +47,20 @@ const LaunchDetail = () => {
                 </div>
                 
             </div>
-            <div className="container">
-                <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
-                <FlexDiv style={{ "justify-content": "center" }}>
-                    {launch.links.flickr_images.map((val) => {
-                        return <ImgLaunch src={val} alt="img" />
-                    })}
-                </FlexDiv>
-            </div>
+            
+                {
+                    launch.links.flickr_images[0] === undefined ? null
+                    :
+                    
+                    <div className="container">
+                        <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
+                        <FlexDiv style={{ justifyContent: "center" }}>
+                            {launch.links.flickr_images.map((val, index) => {
+                            return <ImgLaunch key={index} src={val} alt="img" />
+                            })}
+                        </FlexDiv>
+                    </div>
+                }
         </Fragment>
     )
 }
@@ -79,5 +88,20 @@ const ImgLaunch = styled.img`
     padding-bottom: 25px;
     border-radius: 5px;
 
+`
+
+const ViewButton = styled.button`
+    background: transparent;
+    padding: 10px 20px;
+    margin: 20px 0;
+    border: 2px solid #FFF;
+    transition: 0.25s;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    :hover{
+        background: #FFF;
+        color: #555;
+    }
 `
 export default LaunchDetail;

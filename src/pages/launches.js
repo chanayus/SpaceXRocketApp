@@ -68,9 +68,11 @@ const Launches = () => {
     return (
         <Fragment>
             <div className="headerContainer" style={{backgroundImage: `url(https://farm5.staticflickr.com/4891/39745614053_43855205bc_o.jpg`}}>
-                <div className="container">
-                    <h1 className="headerText">LAUNCHES</h1>                  
-                </div> 
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
+                    <div className="container">
+                    <h1 className="headerText">LAUNCHES</h1>
+                    </div>
+                </div>
             </div>
             <div className="container">
                 <FilterDiv>
