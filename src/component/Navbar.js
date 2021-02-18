@@ -37,9 +37,15 @@ const Navbar = () => {
         </div>
         <ul className="menu">
           <Li>
-            <NavLink exact to="/SpaceXRocketApp/" activeStyle={{borderBottom: "2px solid #fff",paddingBottom:"9px"}} style={{ textDecoration: "none", color: "white" }}>
-              Home
-            </NavLink>
+            {
+              window.innerWidth <= 320 ?
+              null
+              :
+              <NavLink exact to="/SpaceXRocketApp/" activeStyle={{borderBottom: "2px solid #fff",paddingBottom:"9px"}} style={{ textDecoration: "none", color: "white" }}>
+                Home
+              </NavLink>
+
+            }
           </Li>
           <Li>
             <NavLink to="/SpaceXRocketApp/rockets" activeStyle={{borderBottom: "2px solid #fff",paddingBottom:"9px"}} style={{ textDecoration: "none", color: "white" }}>
