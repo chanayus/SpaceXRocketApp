@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import Navbar from '../component/Navbar'
 import { motion } from "framer-motion"
 const Home = () => {
-    const [info, setInfo] = useState({"headquarters":"Test", employees : 0, valuation: 0})
+    const [info, setInfo] = useState({"headquarters":"Test", employees : 0, valuation: 0,"links":{}})
     useEffect(
         () => {
             const fetchLaunches = async () => {    
@@ -59,6 +59,12 @@ const Home = () => {
                     </div>                  
                 </FlexDiv>  
             </DivContainer>
+            <DivContainer className="content-flex" style={{ "padding": "2vmin",textAlign:"center"}}>
+                <A href={info.links.website}>Website</A>
+                <A href={info.links.flickr}>Flickr</A>
+                <A href={info.links.twitter}>Twitter</A>
+                <A href={info.links.elon_twitter}>Elon Musk</A>
+            </DivContainer>
         </motion.div>
     )
 }
@@ -80,5 +86,14 @@ const ImgRocket = styled.img`
     transition: 0.35s;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
+`
+const A = styled.a`
+    padding:10px;
+    text-decoration: none;
+    color: white;
+    :hover{
+        opacity:0.5;
+        transition: 0.25s;
+    }
 `
 export default Home
