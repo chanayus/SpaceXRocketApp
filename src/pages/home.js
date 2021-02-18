@@ -52,7 +52,7 @@ const Home = () => {
                             <li><b>Headquarters : </b>{info.headquarters.address} {info.headquarters.city} {info.headquarters.state}</li>
                         </ul>
                     </div>   
-                    <div style={{width: 500}} data-aos="fade-left">
+                    <div style={{width: 500}} data-aos="fade-right">
                         <ImgRocket src={"https://farm5.staticflickr.com/4166/34005999880_77684dba4b_o.jpg"} alt="logo"/>  
                     </div>                  
                 </FlexDiv>  
