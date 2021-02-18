@@ -83,8 +83,8 @@ const RocketDetail = () => {
             <div className="container" style={{marginTop: 50, marginBottom: 50}}>
                 <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
                 <FlexDiv className="" style={{ justifyContent:"center"}}>
-                    {rocket.flickr_images.map((val) => {
-                        return <ImgRocket src={val} alt="img" />
+                    {rocket.flickr_images.map((val, index) => {
+                        return <ImgRocket key={index} src={val} alt="img" />
                     })}
                 </FlexDiv>
             </div>
