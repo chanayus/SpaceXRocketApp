@@ -44,14 +44,14 @@ const Home = () => {
             </DivContainer>
             <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"12vmin"}}>
                 <FlexDiv className="container" style={{justifyContent: "space-around", alignItems: "center"}} >
-                    <div style={{width: 500}} data-aos="fade-right">
+                    <div style={{width: 510}} data-aos="fade-right">
                         <h1 className="text-shadow"style={{fontSize: "7.1vmin"}}>About SpaceX</h1>
                         <ul className="text-shadow">
                             <li><b>Founder : </b> {info.founder}</li>
                             <li><b>Founded : </b>{info.founded}</li>
                             <li><b>Employees : </b>{info.employees.toLocaleString()}</li>
                             <li><b>Valuation : </b>{info.valuation.toLocaleString()}</li>
-                            <li><b>Headquarters : </b>{info.headquarters.address} {info.headquarters.city} {info.headquarters.state}</li>
+                            <li><b>Headquarters : </b>{info.headquarters.address}, {info.headquarters.city}, {info.headquarters.state}</li>
                         </ul>
                     </div>   
                     <div style={{width: 470}} data-aos="fade-right">
