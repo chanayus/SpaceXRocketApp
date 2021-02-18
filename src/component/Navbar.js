@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import React, { useEffect, useState } from 'react';
 
 import {
-  Link
+  Link, NavLink
 } from 'react-router-dom';
 const Navbar = () => {
   const [scrollTop, SetscrollTop] = useState(window.scrollY)
@@ -29,26 +29,31 @@ const Navbar = () => {
   }
   return (
     <nav style={{ background: backgroundNav() }}>
-    <div className="nav-flex">
-      <div className="logo">
+      <div className="nav-flex">
+        <div className="logo">
           <Link to="/SpaceXRocketApp">
-            <img src={logo} alt="logo"  width="210" height="34" />
-          </Link>    
+            <img src={logo} alt="logo" width="210" height="34" />
+          </Link>
+        </div>
+        <ul className="menu">
+          <Li>
+            <NavLink exact to="/SpaceXRocketApp/" activeStyle={{borderBottom: "2px solid #fff",paddingBottom:"9px"}} style={{ textDecoration: "none", color: "white" }}>
+              Home
+            </NavLink>
+          </Li>
+          <Li>
+            <NavLink to="/SpaceXRocketApp/rockets" activeStyle={{borderBottom: "2px solid #fff",paddingBottom:"9px"}} style={{ textDecoration: "none", color: "white" }}>
+              Rockets
+            </NavLink>
+          </Li>
+          <Li>
+            <NavLink to="/SpaceXRocketApp/launches" activeStyle={{borderBottom: "2px solid #fff",paddingBottom:"9px"}} style={{ textDecoration: "none", color: "white" }}>
+              Launches
+            </NavLink>
+          </Li>
+        </ul>
       </div>
-      <ul className="menu">
-        <Li>
-          <Link to="/SpaceXRocketApp/rockets" style={{textDecoration: "none", color:"white"}}>
-            Rockets
-          </Link>
-        </Li>
-        <Li>
-          <Link to="/SpaceXRocketApp/launches" style={{textDecoration: "none", color:"white"}}>
-            Launches
-          </Link>
-        </Li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
   );
 }
 const Li = styled.li`
