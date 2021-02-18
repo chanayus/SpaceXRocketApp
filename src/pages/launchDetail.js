@@ -1,8 +1,9 @@
-import React,{ Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 const LaunchDetail = () => {
-    const [launch, setLaunch] = useState({"rocket":{"rocket_name": "", "rocket_type": ""}, "links" : {"youtube_id": "","flickr_images" : [""] }})
+    const [launch, setLaunch] = useState({ "rocket": { "rocket_name": "", "rocket_type": "" }, "links": { "youtube_id": "", "flickr_images": [""] } })
     const { id } = useParams();
 
     useEffect(
@@ -10,7 +11,7 @@ const LaunchDetail = () => {
             const fetchLaunch = async () => {
                 const response = await fetch(`https://api.spacexdata.com/v3/launches/${id}`)
                 const data = await response.json()
-                setLaunch(data)   
+                setLaunch(data)
                 console.log(data)
             }
             fetchLaunch()
@@ -18,19 +19,20 @@ const LaunchDetail = () => {
     );
     return (
         <Fragment>
-            <div className="headerContainer" style={{backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})`}}>
+            <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})` }}>
                 <div className="container">
-                    <h1 className="headerText" style={{width: "70%"}}>{launch.mission_name}</h1>  
-                </div> 
+                    <h1 className="headerText" style={{ width: "70%" }}>{launch.mission_name}</h1>
+                    <h2> {launch.rocket.rocket_name} | <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }} style={{ textDecoration: "none", color: "yellow" }}>View Rocket</Link></h2>
+                </div>
             </div>
-            <div className="container" style={{paddingBottom: 150}}>
+            <div className="container" style={{ paddingBottom: 150 }}>
                 <h1 className="headerText">Launch Detail</h1>
-                <hr/>
+                <hr />
                 <P>{launch.details}</P>
-                <ul style={{padding: 0}}>
+                <ul style={{ padding: 0 }}>
                     <LI><b>Flight Number </b>: {launch.flight_number}</LI>
                     <LI><b>Mission Name :</b> {launch.mission_name}</LI>
-                    <LI><b>Launch Year :</b> {launch.launch_year}</LI>        
+                    <LI><b>Launch Year :</b> {launch.launch_year}</LI>
                     <LI><b>Launch Date :</b> {launch.launch_date_utc}</LI>
                     <LI><b>Rocket Name:</b> {launch.rocket.rocket_name}</LI>
                     <LI><b>Rocket Type:</b> {launch.rocket.rocket_type}</LI>

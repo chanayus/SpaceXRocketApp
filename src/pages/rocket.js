@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import Aos from "aos";
 import styled from 'styled-components'
 const Rocket = () => {
     const [rockets, setRockets] = useState([])
@@ -11,6 +12,7 @@ const Rocket = () => {
                 console.log(data)
                 setRockets(data)
             }
+            Aos.init({duration: 500, delay: 100})
             fetchRockets()
         }, []
     );
@@ -22,12 +24,12 @@ const Rocket = () => {
                 </div>
             </div>
             <div className="container">
-            <FlexContainer>
+            <FlexContainer data-aos="fade" data-aos-delay="200">
                 {rockets.map((value, index) => {
                     return (
                         <Card key={index}>
                             <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1 }}>
-                                <Link to={{pathname: `/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",textAlign:"center",color:"white"}}>
+                                <Link to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",textAlign:"center",color:"white"}}>
                                     <h3 style={{fontWeight:"bold"}}>{value.rocket_name}</h3>
                                     <p style={{textDecoration:"none"}}>{value.country}</p>
                                 </Link>
