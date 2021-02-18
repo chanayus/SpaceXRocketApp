@@ -6,6 +6,7 @@ import starlinkImg from '../img/starlink-wall.jpg'
 import starlinkLogo from '../img/starlink-logo.png'
 import { Fragment, useEffect, useState } from 'react'
 import Navbar from '../component/Navbar'
+import { motion } from "framer-motion"
 const Home = () => {
     const [info, setInfo] = useState({"headquarters":"Test", employees : 0, valuation: 0})
     useEffect(
@@ -21,7 +22,7 @@ const Home = () => {
         }, []
     );
     return (
-        <Fragment>
+        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}} >
             <Navbar />
             <DivContainer className="content-flex" style={{ backgroundImage: `url(${"https://farm9.staticflickr.com/8691/28353012603_ab83b6f5aa_o.jpg"})`, justifyContent: "flex-start" }}>
                 <FlexDiv className="container">
@@ -56,7 +57,7 @@ const Home = () => {
                     </div>                  
                 </FlexDiv>  
             </DivContainer>
-        </Fragment>
+        </motion.div>
     )
 }
 

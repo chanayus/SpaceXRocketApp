@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"
 const LaunchDetail = () => {
     const [launch, setLaunch] = useState({ "rocket": { "rocket_name": "", "rocket_type": "" }, "links": { "youtube_id": "", "flickr_images": [""] } })
     const { id } = useParams();
@@ -18,7 +19,7 @@ const LaunchDetail = () => {
         }, []
     );
     return (
-        <Fragment>
+        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
             <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.225)"}}>
                     <div className="container">
@@ -61,7 +62,7 @@ const LaunchDetail = () => {
                         </FlexDiv>
                     </div>
                 }
-        </Fragment>
+        </motion.div>
     )
 }
 

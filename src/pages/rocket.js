@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import styled from 'styled-components'
+import { motion } from "framer-motion"
 const Rocket = () => {
     const [rockets, setRockets] = useState([])
     useEffect(
@@ -17,7 +18,7 @@ const Rocket = () => {
         }, []
     );
     return (
-        <Fragment>
+        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
             <div className="headerContainer" style={{ backgroundImage: `url(https://i1.wp.com/bilmediklerimiz.com/storage/2021/02/analist-buyuk-kazanclar-saglayabilecegini-soyledigi-5-kucuk-altcoin-cevherini-siraliyor-CE9SiMLr.jpg)` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
@@ -39,7 +40,7 @@ const Rocket = () => {
                 })}
                 </FlexContainer>
             </div>
-        </Fragment>
+        </motion.div>
     )
 }
 

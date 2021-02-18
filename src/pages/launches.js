@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
+import { motion } from "framer-motion"
 const Launches = () => {
     const [launches, setLaunches] = useState([])
     const [defaultLaunches, setDefaultLaunches] = useState([])
@@ -66,7 +67,7 @@ const Launches = () => {
         setYear(false)
     }
     return (
-        <Fragment>
+        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
             <div className="headerContainer" style={{backgroundImage: `url(https://farm5.staticflickr.com/4891/39745614053_43855205bc_o.jpg`}}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
@@ -110,7 +111,7 @@ const Launches = () => {
                     }
                 </FlexContainer>
             </div>
-        </Fragment>
+        </motion.div>
     )
 
 
