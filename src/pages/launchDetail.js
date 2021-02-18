@@ -2,7 +2,8 @@ import React, {  useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import launchNull from '../img/launch-null.webp'
 const LaunchDetail = () => {
     const [launch, setLaunch] = useState({ 
         "rocket": { "rocket_name": "", "rocket_type": "" }, 
@@ -18,15 +19,16 @@ const LaunchDetail = () => {
             const fetchLaunch = async () => {
                 const response = await fetch(`https://api.spacexdata.com/v3/launches/${id}`)
                 const data = await response.json()
+                const d = new Date(data.launch_date_utc)
+                data.launch_date_utc = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"  "+d.getUTCHours()+":"+d.getUTCMinutes()
                 setLaunch(data)
-                console.log(data)
             }
             fetchLaunch()
         }, []
     );
     return (
         <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
-            <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})` }}>
+            <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? launchNull : launch.links.flickr_images[0]})` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.225)"}}>
                     <div className="container">
                         <h1 className="headerText" style={{ width: "70%", marginBottom: 0 }}>{launch.mission_name}</h1>

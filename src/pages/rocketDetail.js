@@ -60,8 +60,8 @@ const RocketDetail = () => {
                         <hr />
                         <ul>
                             <li><b>Stages : </b>{rocket.stages}</li>
-                            <li><b>Height : </b>{rocket.height.meters} m ( {rocket.height.feet} ft)</li>
-                            <li><b>Diameter : </b>{rocket.diameter.meters} m ( {rocket.diameter.feet} ft)</li>
+                            <li><b>Height : </b>{rocket.height.meters} m ({rocket.height.feet} ft)</li>
+                            <li><b>Diameter : </b>{rocket.diameter.meters} m ({rocket.diameter.feet} ft)</li>
                             <li><b>Mass : </b>{rocket.mass.kg} kg</li>
                             <li><b>Legs of Rocket : </b>{rocket.landing_legs.number}</li>
                             <li><b>Material : </b>{rocket.landing_legs.material ? rocket.landing_legs.material : "N/A"}</li>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import { motion } from "framer-motion"
+import launchBg from '../img/launch-bg.webp'
 const Launches = () => {
     const [launches, setLaunches] = useState([])
     const [defaultLaunches, setDefaultLaunches] = useState([])
@@ -68,7 +69,7 @@ const Launches = () => {
     }
     return (
         <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
-            <div className="headerContainer" style={{backgroundImage: `url(https://farm5.staticflickr.com/4891/39745614053_43855205bc_o.jpg`}}>
+            <div className="headerContainer" style={{backgroundImage: `url(${launchBg}`}}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
                     <h1 className="headerText">LAUNCHES</h1>
@@ -87,7 +88,7 @@ const Launches = () => {
                 <FlexContainer>
                     { launches.length == 0 ?
                         <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                            <div class="loader"></div>
+                            <div className="loader"></div>
                             <NoResult>{status}</NoResult>  
                         </div>      
                         :
