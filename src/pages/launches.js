@@ -7,12 +7,14 @@ const Launches = () => {
     const [success, setSuccess] = useState(undefined)
     const [text, setText] = useState("")
     const [year, setYear] = useState(false)
+    const [status, setStatus] = useState("Please Wait")
 
     useEffect(
         () => {
             const fetchLaunches = async () => {
                 const response = await fetch('https://api.spacexdata.com/v3/launches')
                 const data = await response.json()
+                setStatus("No Result")
                 setLaunches(data)
                 setDefaultLaunches(data)
             }
@@ -67,7 +69,7 @@ const Launches = () => {
         <Fragment>
             <div className="headerContainer" style={{backgroundImage: `url(https://farm5.staticflickr.com/4891/39745614053_43855205bc_o.jpg`}}>
                 <div className="container">
-                    <h1 className="headerText">LAUNCHES</h1>     
+                    <h1 className="headerText">LAUNCHES</h1>                  
                 </div> 
             </div>
             <div className="container">
@@ -81,13 +83,16 @@ const Launches = () => {
                 </FilterDiv>
                 <FlexContainer>
                     { launches.length == 0 ?
-                        <center><NoResult>No Result</NoResult></center>       
+                        <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <div class="loader"></div>
+                            <NoResult>{status}</NoResult>  
+                        </div>      
                         :
                         launches.map((value, index)=>{
                             return(
                                 <Card key={index}>
                                     <div >
-                                        <img src={value.links.mission_patch_small} alt=""/>
+                                        <img src={value.links.mission_patch_small === null ? "http://ird.rmuti.ac.th/2020/world/upload/post/picture/thumb/IRD110820C00002/noimg.png" : value.links.mission_patch_small} alt=""/>
                                     </div>    
                                     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1}}>
                                         <h3>{value.rocket.rocket_name}</h3>
@@ -111,13 +116,11 @@ const Launches = () => {
 const Card = styled.div`
     border-radius: 3px;
     background-color: #191919;
-
     margin: 20px 10px;
     width: 600px;
     text-decoration: none;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     transition: 0.25s;
-
     display: flex;
     img{    
         width: 140px;
@@ -151,6 +154,7 @@ const FlexContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    transition: 0.35s;
 `
 
 const FilterDiv = styled.div`

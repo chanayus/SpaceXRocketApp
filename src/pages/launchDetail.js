@@ -22,11 +22,11 @@ const LaunchDetail = () => {
             <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? "https://farm5.staticflickr.com/4227/34223076793_4abe7e74d6_o.jpg" : launch.links.flickr_images[0]})` }}>
                 <div className="container">
                     <h1 className="headerText" style={{ width: "70%" }}>{launch.mission_name}</h1>
-                    <h2> {launch.rocket.rocket_name} | <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }} style={{ textDecoration: "none", color: "yellow" }}>View Rocket</Link></h2>
+                    <h2 className="text-shadow" style={{cursor: "pointer"}}> {launch.rocket.rocket_name} | <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }} style={{ textDecoration: "none", color: "yellow" }}>View Rocket</Link></h2>
                 </div>
             </div>
-            <div className="container" style={{ paddingBottom: 150 }}>
-                <h1 className="headerText">Launch Detail</h1>
+            <div className="container" style={{ paddingBottom: 10 }}>
+                <h1 className="headerText" style={{fontSize: "8vmin"}}>Launch Detail</h1>
                 <hr />
                 <P>{launch.details}</P>
                 <ul style={{ padding: 0 }}>
@@ -38,7 +38,19 @@ const LaunchDetail = () => {
                     <LI><b>Rocket Type:</b> {launch.rocket.rocket_type}</LI>
                     <LI><b>Launch Result :</b> {launch.launch_success ? "Success" : "Fail"}</LI>
                 </ul>
-                <iframe src={`https://www.youtube.com/embed/${launch.links.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
+                <div style={{"padding": "50px 0"}}>
+                    <h1 style={{fontSize: "5vmin"}}>Video</h1>
+                    <iframe src={`https://www.youtube.com/embed/${launch.links.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
+                </div>
+                
+            </div>
+            <div className="container">
+                <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
+                <FlexDiv style={{ "justify-content": "center" }}>
+                    {launch.links.flickr_images.map((val) => {
+                        return <ImgLaunch src={val} alt="img" />
+                    })}
+                </FlexDiv>
             </div>
         </Fragment>
     )
@@ -55,5 +67,17 @@ const P = styled.p`
     font-size: 1.05rem;
     padding: 25px 0;
     color: #FFF;
+`
+const FlexDiv = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`
+const ImgLaunch = styled.img`
+    width: 406px;
+    transition: 0.35s;
+    margin: 0 5px;
+    padding-bottom: 25px;
+    border-radius: 5px;
+
 `
 export default LaunchDetail;
