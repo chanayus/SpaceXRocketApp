@@ -32,7 +32,7 @@ const Navbar = () => {
     <div className="nav-flex">
       <div className="logo">
           <Link to="/SpaceXRocketApp">
-            <img src={logo} alt="logo" style={{ maxWidth: "100%" }} />
+            <img src={logo} alt="logo"  width="210" height="34" />
           </Link>    
       </div>
       <ul className="menu">

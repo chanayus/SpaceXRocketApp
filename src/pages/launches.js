@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import { motion } from "framer-motion"
@@ -98,9 +98,9 @@ const Launches = () => {
                                         <img src={value.links.mission_patch_small === null ? "http://ird.rmuti.ac.th/2020/world/upload/post/picture/thumb/IRD110820C00002/noimg.png" : value.links.mission_patch_small} alt=""/>
                                     </div>    
                                     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1}}>
-                                        <h3>{value.rocket.rocket_name}</h3>
+                                        <h2>{value.rocket.rocket_name}</h2>
                                         <h3>{value.launch_year}</h3>
-                                        {value.launch_success ? <h3 style={{color: "rgb(102, 173, 93)"}}>Launch Success</h3> : <h3 style={{color: "rgb(199, 38, 38)"}}>Launch Fail</h3>}
+                                        {value.launch_success ? <h3 style={{color: "rgb(128, 214, 117)"}}>Launch Success</h3> : <h3 style={{color: "rgb(251, 46, 46)"}}>Launch Fail</h3>}
                                         <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
                                             <ViewButton>View Detail</ViewButton> 
                                         </Link>
@@ -134,6 +134,9 @@ const Card = styled.div`
         color: #FFF;
         margin: 5px 0;
         font-weight: 300;
+    }
+    h2{
+        margin: 5px 0;
     }
 `
 

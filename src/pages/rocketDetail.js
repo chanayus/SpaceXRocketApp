@@ -1,12 +1,19 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion"
 const RocketDetail = () => {
     const [rocket, setRocket] = useState({
-        "height": {}, "diameter": {}, "mass": {}, "landing_legs": {}, "flickr_images": [],"first_stage":{"thrust_sea_level":{}},"second_stage":{"thrust":{}} 
+        "height": {},
+        "diameter": {},
+        "mass": {},
+        "landing_legs": {},
+        "flickr_images": [],
+        "first_stage":{"thrust_sea_level":{}},
+        "second_stage":{"thrust":{}} 
     })
     const { rocket_id } = useParams();
+
     useEffect(
         () => {
             const fetchRocket = async () => {
@@ -18,6 +25,7 @@ const RocketDetail = () => {
             fetchRocket()
         }, []
     );
+
     return (
         <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
             <div className="headerContainer" style={{ backgroundImage: `url(${rocket.flickr_images[0]})` }}>

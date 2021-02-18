@@ -1,10 +1,16 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion"
 const LaunchDetail = () => {
-    const [launch, setLaunch] = useState({ "rocket": { "rocket_name": "", "rocket_type": "" }, "links": { "youtube_id": "", "flickr_images": [""] } })
+    const [launch, setLaunch] = useState({ 
+        "rocket": { "rocket_name": "", "rocket_type": "" }, 
+        "links": { 
+            "youtube_id": "",
+            "flickr_images": [""] 
+            }
+        })
     const { id } = useParams();
 
     useEffect(
@@ -45,14 +51,11 @@ const LaunchDetail = () => {
                 <div style={{"padding": "50px 0"}}>
                     <h1 style={{fontSize: "5vmin"}}>Video</h1>
                     <iframe src={`https://www.youtube.com/embed/${launch.links.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
-                </div>
-                
+                </div>      
             </div>
-            
                 {
                     launch.links.flickr_images[0] === undefined ? null
                     :
-                    
                     <div className="container">
                         <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
                         <FlexDiv style={{ justifyContent: "center" }}>

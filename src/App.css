@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 body{
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -80,6 +80,7 @@ ul{
 
 img{
   max-width: 100%;
+  height: auto;
   object-fit: cover;
 }
 input, button{
