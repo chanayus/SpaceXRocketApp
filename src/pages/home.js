@@ -42,7 +42,7 @@ const Home = () => {
                     </div>
                 </FlexDiv>
             </DivContainer>
-            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"24vmin"}}>
+            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"12vmin"}}>
                 <FlexDiv className="container" style={{justifyContent: "space-around", alignItems: "center"}} >
                     <div style={{width: 500}} data-aos="fade-right">
                         <h1 className="text-shadow"style={{fontSize: "7.1vmin"}}>About SpaceX</h1>
