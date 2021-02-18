@@ -42,11 +42,11 @@ const Home = () => {
                     </div>
                 </FlexDiv>
             </DivContainer>
-            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin"}}>
+            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"24vmin"}}>
                 <FlexDiv className="container" style={{justifyContent: "space-around", alignItems: "center"}} >
                     <div style={{width: 500}} data-aos="fade-right">
-                        <h1 style={{fontSize: "7.1vmin"}}>About SpaceX</h1>
-                        <ul>
+                        <h1 className="text-shadow"style={{fontSize: "7.1vmin"}}>About SpaceX</h1>
+                        <ul className="text-shadow">
                             <li><b>Founder : </b> {info.founder}</li>
                             <li><b>Founded : </b>{info.founded}</li>
                             <li><b>Employees : </b>{info.employees.toLocaleString()}</li>
@@ -54,8 +54,8 @@ const Home = () => {
                             <li><b>Headquarters : </b>{info.headquarters.address} {info.headquarters.city} {info.headquarters.state}</li>
                         </ul>
                     </div>   
-                    <div style={{width: 500}} data-aos="fade-right">
-                        <ImgRocket src={bg3} alt="logo" width="500" height="750"/>  
+                    <div style={{width: 470}} data-aos="fade-right">
+                        <ImgRocket src={bg3} alt="logo" width="500" height="280"/>  
                     </div>                  
                 </FlexDiv>  
             </DivContainer>
