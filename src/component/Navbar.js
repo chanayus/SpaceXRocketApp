@@ -24,7 +24,7 @@ const Navbar = () => {
       return "rgba(0, 0, 99, 0)"
     }
     else {
-      return "rgba(0, 0, 0, 0.45) "
+      return "rgba(0, 0, 0, 0.55) "
     }
   }
   return (

@@ -5,14 +5,9 @@ body{
   padding: 0;
   box-sizing: border-box;
   background :#0e0e0e;
-  animation: fade 0.75s;
   color: #FFF;
 }
 
-@keyframes fade{
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
 .container{
   max-width: 1280px;
   margin: 0 auto;
@@ -26,10 +21,10 @@ body{
 }
 
 .wrapper{
-  padding: 30vmin 0px;
+  padding: 29vmin 0px;
 }
 .headerText{
-  font-size: 10.5vmin;
+  font-size: 9vmin;
   color: #FFF;
   padding: 0 ;
   text-shadow: 1.5px 1px 0 #333,
@@ -47,7 +42,7 @@ nav{
   top: 0;
   width: 100%;
   transition: 0.5s;
-  z-index: 10;
+  z-index: 100;
 }
 .nav-flex{
   display: flex;

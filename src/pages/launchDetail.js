@@ -37,7 +37,7 @@ const LaunchDetail = () => {
             <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? launchNull : launch.links.flickr_images[0]})` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.225)"}}>
                     <div className="container">
-                        <h1  className="headerText" style={{ width: "70%", marginBottom: 0 }}>{launch.mission_name}</h1>
+                        <h1  className="headerText" style={{ width: "80%", marginBottom: 0 }}>{launch.mission_name}</h1>
                         <h2 className="text-shadow" style={{ marginTop: 10 }}> {launch.rocket.rocket_name}</h2>
                         <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
                     </div>
@@ -122,7 +122,7 @@ const ImgLaunch = styled.img`
 
 const ViewButton = styled.button`
     background: transparent;
-    padding: 10px 20px;
+    padding: 1.25vmin 2.5vmin;
     margin: 20px 0;
     border: 2px solid #FFF;
     transition: 0.25s;

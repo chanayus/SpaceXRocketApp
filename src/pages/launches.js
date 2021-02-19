@@ -73,10 +73,10 @@ const Launches = () => {
     }
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
-            <div className="headerContainer" style={{backgroundImage: `url(${launchBg}`}}>
+            <div className="headerContainer" style={{backgroundImage: `url(${launchBg})`}}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
-                    <h1 data-aos="fade-right" className="headerText">LAUNCHES</h1>
+                        <h1 data-aos="fade-right" className="headerText">LAUNCHES</h1>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@ const Launches = () => {
                 <FlexContainer>
                     { launches.length == 0 ?
                         <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                            <div className="loader"></div>
+                            {status === "No Result" ? null : <div className="loader"></div>}
                             <NoResult>{status}</NoResult>  
                         </div>      
                         :
@@ -106,17 +106,21 @@ const Launches = () => {
                                         <div style={{flex: 1}}>
                                             <h2 style={{fontSize: "1.38rem"}}>{value.rocket.rocket_name} ({value.mission_name})</h2>
                                             <h3>{value.launch_year}</h3>
-                                            {value.launch_success ? <h3 style={{color: "rgb(128, 214, 117)"}}>Launch Success</h3> : <h3 style={{color: "rgb(251, 46, 46)"}}>Launch Fail</h3>}
-                                            <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
+                                            {   value.launch_success ? 
+                                                    <h3 style={{color: "rgb(128, 214, 117)"}}>Launch Success</h3> 
+                                                : value.launch_success === null ?
+                                                    <h3 style={{color: "#999"}}>Unknown</h3>
+                                                :        
+                                                <h3 style={{color: "rgb(251, 46, 46)"}}>Launch Fail</h3>}
+                                            <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`}}  style={{textDecoration: "none"}}> 
                                                 <ViewButton>View Detail</ViewButton> 
                                             </Link>
                                         </div>
                                         <FlightNum>
                                             <h1>{index+1}</h1>
                                         </FlightNum>    
-                                    </div>
-                                    
-                                </Card>    
+                                    </div>  
+                                </Card>                           
                             )
                         })
                     }
