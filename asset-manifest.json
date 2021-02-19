@@ -1,32 +1,32 @@
 {
   "files": {
-    "main.css": "/SpaceXRocketApp/static/css/main.24ffb7d5.chunk.css",
-    "main.js": "/SpaceXRocketApp/static/js/main.c9c09424.chunk.js",
-    "main.js.map": "/SpaceXRocketApp/static/js/main.c9c09424.chunk.js.map",
+    "main.css": "/SpaceXRocketApp/static/css/main.87809821.chunk.css",
+    "main.js": "/SpaceXRocketApp/static/js/main.6a7340e4.chunk.js",
+    "main.js.map": "/SpaceXRocketApp/static/js/main.6a7340e4.chunk.js.map",
     "runtime-main.js": "/SpaceXRocketApp/static/js/runtime-main.e8db582a.js",
     "runtime-main.js.map": "/SpaceXRocketApp/static/js/runtime-main.e8db582a.js.map",
     "static/css/2.ec02d681.chunk.css": "/SpaceXRocketApp/static/css/2.ec02d681.chunk.css",
-    "static/js/2.fcac0473.chunk.js": "/SpaceXRocketApp/static/js/2.fcac0473.chunk.js",
-    "static/js/2.fcac0473.chunk.js.map": "/SpaceXRocketApp/static/js/2.fcac0473.chunk.js.map",
+    "static/js/2.63735456.chunk.js": "/SpaceXRocketApp/static/js/2.63735456.chunk.js",
+    "static/js/2.63735456.chunk.js.map": "/SpaceXRocketApp/static/js/2.63735456.chunk.js.map",
     "static/js/3.b8433dc1.chunk.js": "/SpaceXRocketApp/static/js/3.b8433dc1.chunk.js",
     "static/js/3.b8433dc1.chunk.js.map": "/SpaceXRocketApp/static/js/3.b8433dc1.chunk.js.map",
     "index.html": "/SpaceXRocketApp/index.html",
     "static/css/2.ec02d681.chunk.css.map": "/SpaceXRocketApp/static/css/2.ec02d681.chunk.css.map",
-    "static/css/main.24ffb7d5.chunk.css.map": "/SpaceXRocketApp/static/css/main.24ffb7d5.chunk.css.map",
-    "static/js/2.fcac0473.chunk.js.LICENSE.txt": "/SpaceXRocketApp/static/js/2.fcac0473.chunk.js.LICENSE.txt",
+    "static/css/main.87809821.chunk.css.map": "/SpaceXRocketApp/static/css/main.87809821.chunk.css.map",
+    "static/js/2.63735456.chunk.js.LICENSE.txt": "/SpaceXRocketApp/static/js/2.63735456.chunk.js.LICENSE.txt",
     "static/media/bg1.dc9c1973.webp": "/SpaceXRocketApp/static/media/bg1.dc9c1973.webp",
     "static/media/bg2.825ebaaa.webp": "/SpaceXRocketApp/static/media/bg2.825ebaaa.webp",
-    "static/media/bg3.c0273258.webp": "/SpaceXRocketApp/static/media/bg3.c0273258.webp",
-    "static/media/launch-bg.a372f067.webp": "/SpaceXRocketApp/static/media/launch-bg.a372f067.webp",
+    "static/media/bg3.5d4ba0eb.webp": "/SpaceXRocketApp/static/media/bg3.5d4ba0eb.webp",
+    "static/media/launch-bg.fd772b7a.webp": "/SpaceXRocketApp/static/media/launch-bg.fd772b7a.webp",
     "static/media/launch-null.20050341.webp": "/SpaceXRocketApp/static/media/launch-null.20050341.webp",
-    "static/media/rocket-bg.04df6466.webp": "/SpaceXRocketApp/static/media/rocket-bg.04df6466.webp",
+    "static/media/rocket-bg.ddf663fa.webp": "/SpaceXRocketApp/static/media/rocket-bg.ddf663fa.webp",
     "static/media/starlink-wall.9c24e5f8.webp": "/SpaceXRocketApp/static/media/starlink-wall.9c24e5f8.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.e8db582a.js",
     "static/css/2.ec02d681.chunk.css",
-    "static/js/2.fcac0473.chunk.js",
-    "static/css/main.24ffb7d5.chunk.css",
-    "static/js/main.c9c09424.chunk.js"
+    "static/js/2.63735456.chunk.js",
+    "static/css/main.87809821.chunk.css",
+    "static/js/main.6a7340e4.chunk.js"
   ]
 }
