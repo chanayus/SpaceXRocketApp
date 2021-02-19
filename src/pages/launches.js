@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import { motion } from "framer-motion"
 import launchBg from '../img/launch-bg.webp'
+import Aos from "aos";
+
 const Launches = () => {
     const [launches, setLaunches] = useState([])
     const [defaultLaunches, setDefaultLaunches] = useState([])
@@ -20,6 +22,8 @@ const Launches = () => {
                 setLaunches(data)
                 setDefaultLaunches(data)
             }
+            window.scroll(0, 0);
+            Aos.init({duration: 500, delay: 100})    
             fetchLaunches()
         }, []
     );
@@ -68,11 +72,11 @@ const Launches = () => {
         setYear(false)
     }
     return (
-        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
+        <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{backgroundImage: `url(${launchBg}`}}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
-                    <h1 className="headerText">LAUNCHES</h1>
+                    <h1 data-aos="fade-right" className="headerText">LAUNCHES</h1>
                     </div>
                 </div>
             </div>
@@ -95,17 +99,23 @@ const Launches = () => {
                         launches.map((value, index)=>{
                             return(
                                 <Card key={index}>
-                                    <div >
+                                    <div style={{flex: 0.45}}>
                                         <img src={value.links.mission_patch_small === null ? "http://ird.rmuti.ac.th/2020/world/upload/post/picture/thumb/IRD110820C00002/noimg.png" : value.links.mission_patch_small} alt=""/>
                                     </div>    
-                                    <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: 10, flex: 1}}>
-                                        <h2>{value.rocket.rocket_name}</h2>
-                                        <h3>{value.launch_year}</h3>
-                                        {value.launch_success ? <h3 style={{color: "rgb(128, 214, 117)"}}>Launch Success</h3> : <h3 style={{color: "rgb(251, 46, 46)"}}>Launch Fail</h3>}
-                                        <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
-                                            <ViewButton>View Detail</ViewButton> 
-                                        </Link>
+                                    <div style={{padding: 20, flex: 1, display:"flex", zIndex: 10}}>
+                                        <div style={{flex: 1}}>
+                                            <h2 style={{fontSize: "1.38rem"}}>{value.rocket.rocket_name} ({value.mission_name})</h2>
+                                            <h3>{value.launch_year}</h3>
+                                            {value.launch_success ? <h3 style={{color: "rgb(128, 214, 117)"}}>Launch Success</h3> : <h3 style={{color: "rgb(251, 46, 46)"}}>Launch Fail</h3>}
+                                            <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`}} style={{textDecoration: "none"}}> 
+                                                <ViewButton>View Detail</ViewButton> 
+                                            </Link>
+                                        </div>
+                                        <FlightNum>
+                                            <h1>{index+1}</h1>
+                                        </FlightNum>    
                                     </div>
+                                    
                                 </Card>    
                             )
                         })
@@ -125,11 +135,15 @@ const Card = styled.div`
     text-decoration: none;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     transition: 0.25s;
+    align-items: center;
     display: flex;
+    position: relative;
     img{    
-        width: 140px;
+
+        max-width: 100%;
         padding: 5px;
-        margin-top: 10px;
+        margin-top: 0px;
+
     }
     h3{
         color: #FFF;
@@ -193,6 +207,19 @@ const NoResult = styled.h1`
     font-weight: 200;
     color: #AAA; 
     padding: 70px 0;
+`
+
+const FlightNum = styled.div`
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    padding-right: 10px;
+    h1{
+        font-size: 9vmin;
+        color: rgba(0,0,0,0.25);
+        margin: 0;
+    }
 `
 
 export default Launches

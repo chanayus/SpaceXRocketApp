@@ -19,12 +19,13 @@ const Home = () => {
                 const data = await response.json()
                 setInfo(data)
             }
+            window.scroll(0, 0);
             Aos.init({duration: 1200, delay: 120})
             fetchLaunches()
         }, []
     );
     return (
-        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}} >
+        <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }} >
             <Navbar />
             <DivContainer className="content-flex" style={{ backgroundImage: `url(${bg1})`, justifyContent: "flex-start" }}>
                 <FlexDiv className="container">
@@ -42,7 +43,7 @@ const Home = () => {
                     </div>
                 </FlexDiv>
             </DivContainer>
-            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"12vmin"}}>
+            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"12vmin", backgroundPosition: "bottom"}}>
                 <FlexDiv className="container" style={{justifyContent: "space-around", alignItems: "center"}} >
                     <div style={{width: 510}} data-aos="fade-right">
                         <h1 className="text-shadow"style={{fontSize: "7.1vmin"}}>About SpaceX</h1>

@@ -2,6 +2,7 @@ import React, {  useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion"
+import Aos from "aos";
 const RocketDetail = () => {
     const [rocket, setRocket] = useState({
         "height": {},
@@ -20,17 +21,18 @@ const RocketDetail = () => {
                 const response = await fetch(`https://api.spacexdata.com/v3/rockets/${rocket_id}`)
                 const data = await response.json()
                 setRocket(data)
-                console.log(data)
             }
+            window.scroll(0, 0); 
+            Aos.init({duration: 500, delay: 100})              
             fetchRocket()
         }, []
     );
 
     return (
-        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
+        <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${rocket.flickr_images[0]})` }}>
-                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.23)"}}>
-                    <div className="container">
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.45)"}}>
+                    <div data-aos="fade-right" data-aos-delay="270"  className="container">
                         <h1 className="headerText" style={{ width: "70%", marginBottom: 20 }}>{rocket.rocket_name}</h1>
                         <h3 className="text-shadow">{rocket.description}</h3>
                         <p style={{fontSize: "1.3rem"}} className="text-shadow">{rocket.country}</p>

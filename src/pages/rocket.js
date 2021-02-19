@@ -14,16 +14,17 @@ const Rocket = () => {
                 const data = await response.json()
                 setRockets(data)
             }
-            Aos.init({duration: 500, delay: 100})
+            window.scroll(0, 0);
+            Aos.init({duration: 500, delay: 100})    
             fetchRockets()
         }, []
     );
     return (
-        <motion.div initial={{ opacity:  0}} animate={{ opacity:  1}}>
+        <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg})` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
-                    <h1 className="headerText">ROCKETS</h1>
+                    <h1 data-aos="fade-right" data-aos-delay="270" className="headerText">ROCKETS</h1>
                     </div>
                 </div>
             </div>
