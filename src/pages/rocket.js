@@ -29,13 +29,13 @@ const Rocket = () => {
                 </div>
             </div>
             <div className="container">
-                <FlexContainer data-aos="fade" data-aos-delay="200" data-aos-once="true">
+                <FlexContainer data-aos="fade" data-aos-delay="200" data-aos-once="true" style={{marginBottom: 50}}>
                 {rockets.map((value, index) => {
                     return (
-                        <Link key={index} to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",width: "50vmin"}}>                 
+                        <Link key={index} to={{pathname: `/SpaceXRocketApp/rocketDetail/${value.rocket_id}` }} style={{textDecoration: "none",width: "55vmin"}}>                 
                             <Card > 
                                 <h1>{value.id}</h1>                     
-                                <h3>{value.rocket_name}</h3>
+                                <p>{value.rocket_name}</p>
                             </Card>
                         </Link>
                     )
@@ -66,7 +66,7 @@ const Card = styled.div`
         position: absolute;
         left: 0; 
     }
-    h3{
+    p{
         color: #FFF;
         font-weight: bold;
         width: 100%;

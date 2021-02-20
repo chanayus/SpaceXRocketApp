@@ -39,6 +39,10 @@ const LaunchDetail = () => {
                         <h1  className="headerText" style={{ width: "80%", marginBottom: 0 }}>{launch.mission_name}</h1>
                         <h2 className="text-shadow" style={{ marginTop: 10 }}> {launch.rocket.rocket_name}</h2>
                         <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
+                        <div className="pageNav">
+                            <a href={`/SpaceXRocketApp/launchDetail/${parseInt(id)+1}`}>prev</a>
+                            <a href={`/SpaceXRocketApp/launchDetail/${parseInt(id-1)}`}>next</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,7 +80,7 @@ const LaunchDetail = () => {
                 </ul>
                 <div style={{"padding": "50px 0"}}>
                     <h1 style={{fontSize: "5vmin"}}>Video</h1>
-                    <iframe src={`https://www.youtube.com/embed/${launch.links.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
+                    <iframe title="SpaceX" src={`https://www.youtube.com/embed/${launch.links.youtube_id}/`} width="100%" height="640px" frameBorder='0' allowFullScreen ></iframe>
                 </div>      
             </div>
                 {
