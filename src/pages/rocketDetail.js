@@ -27,11 +27,16 @@ const RocketDetail = () => {
             fetchRocket()
         }, []
     );
-
+    const rocketBg = {
+        "Falcon Heavy":"https://live.staticflickr.com/631/21048044876_bae2435d96_k.jpg",
+        "Falcon 9":"https://live.staticflickr.com/3865/32945170225_e5b87acce0_k.jpg",
+        "Starship": "https://live.staticflickr.com/65535/50703878421_4c2b6e88c7_k.jpg",
+        "Falcon 1":"https://live.staticflickr.com/65535/50241845831_79a60b6066_k.jpg"
+    }
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
-            <div className="headerContainer" style={{ backgroundImage: `url(${rocket.flickr_images[0]})` }}>
-                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.45)"}}>
+            <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg[rocket.rocket_name]})` }}>
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.325)"}}>
                     <div data-aos="fade-right" data-aos-delay="270"  className="container">
                         <h1 className="headerText" style={{ width: "70%", marginBottom: 20 }}>{rocket.rocket_name}</h1>
                         <h3 className="text-shadow">{rocket.description}</h3>

@@ -73,10 +73,10 @@ const Launches = () => {
     }
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
-            <div className="headerContainer" style={{backgroundImage: `url(${launchBg})`}}>
+            <div className="headerContainer" style={{ backgroundImage: `url(${launchBg})` }}>
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                     <div className="container">
-                        <h1 data-aos="fade-right" className="headerText">LAUNCHES</h1>
+                        <h1 data-aos="fade-right" data-aos-delay="270" className="headerText">LAUNCHES</h1>
                     </div>
                 </div>
             </div>

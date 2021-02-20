@@ -87,7 +87,7 @@ const LaunchDetail = () => {
                         <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
                         <FlexDiv style={{ justifyContent: "center" }}>
                             {launch.links.flickr_images.map((val, index) => {
-                            return <ImgLaunch key={index} src={val} alt="img" />
+                            return (<ImgLaunch key={index} src={val} alt="img" width="300"/>)
                             })}
                         </FlexDiv>
                     </div>
@@ -98,7 +98,7 @@ const LaunchDetail = () => {
 
 const LI = styled.li`
     list-style: none;
-    color: #CDCDCD;
+    color: #EDEDED;
     font-size: 1.25rem;
     line-height: 2.5;
     font-weight: 200;
@@ -109,15 +109,19 @@ const P = styled.p`
     color: #FFF;
 `
 const FlexDiv = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
+    grid-gap: 20px;
+    overflow: hidden;
+    grid-auto-flow: dense;
+    
 `
 const ImgLaunch = styled.img`
-    width: 406px;
+    object-fit: cover;
     transition: 0.35s;
-    margin: 0 5px;
-    padding-bottom: 25px;
-
+    width: 100%;
+    height: 100%;
+    
 `
 
 const ViewButton = styled.button`
