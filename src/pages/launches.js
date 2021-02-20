@@ -30,7 +30,8 @@ const Launches = () => {
 
     useEffect(() =>{
         setLaunches(defaultLaunches.filter(value =>{
-            return value.rocket.rocket_name.toLowerCase().includes(text.toLowerCase())
+            const name = value.rocket.rocket_name+value.mission_name
+            return name.toLowerCase().includes(text.toLowerCase())
         }))
     }, [text])
 
@@ -133,7 +134,7 @@ const Launches = () => {
 }
 const Card = styled.div`
     border-radius: 3px;
-    background-color: #191919;
+    background-color: #1f1f1f;
     margin: 20px 10px;
     width: 600px;
     text-decoration: none;
@@ -143,7 +144,6 @@ const Card = styled.div`
     display: flex;
     position: relative;
     img{    
-
         max-width: 100%;
         padding: 5px;
         margin-top: 0px;
@@ -221,7 +221,7 @@ const FlightNum = styled.div`
     padding-right: 10px;
     h1{
         font-size: 9vmin;
-        color: rgba(0,0,0,0.25);
+        color: rgba(0,0,0,0.4);
         margin: 0;
     }
 `

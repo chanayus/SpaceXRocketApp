@@ -26,10 +26,9 @@ const LaunchDetail = () => {
                 const d = new Date(data.launch_date_utc)
                 data.launch_date_utc = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"  "+d.getUTCHours()+":"+d.getUTCMinutes()
                 setLaunch(data)
-                console.log(data)
             }
-            window.scroll(0, 0);
-            fetchLaunch()
+            window.scroll(0, 0); 
+            fetchLaunch()  
         }, []
     );
     return (
@@ -83,7 +82,7 @@ const LaunchDetail = () => {
                 {
                     launch.links.flickr_images[0] === undefined ? null
                     :
-                    <div className="container">
+                    <div className="container" style={{paddingBottom: 30}}>
                         <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
                         <FlexDiv style={{ justifyContent: "center" }}>
                             {launch.links.flickr_images.map((val, index) => {
