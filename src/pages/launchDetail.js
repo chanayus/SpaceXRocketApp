@@ -31,6 +31,7 @@ const LaunchDetail = () => {
             fetchLaunch()  
         }, []
     );
+
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? launchNull : launch.links.flickr_images[0]})` }}>
@@ -39,10 +40,6 @@ const LaunchDetail = () => {
                         <h1  className="headerText" style={{ width: "80%", marginBottom: 0 }}>{launch.mission_name}</h1>
                         <h2 className="text-shadow" style={{ marginTop: 10 }}> {launch.rocket.rocket_name}</h2>
                         <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
-                        <div className="pageNav">
-                            <a href={`/SpaceXRocketApp/launchDetail/${parseInt(id)+1}`}>prev</a>
-                            <a href={`/SpaceXRocketApp/launchDetail/${parseInt(id-1)}`}>next</a>
-                        </div>
                     </div>
                 </div>
             </div>
