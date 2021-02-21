@@ -119,7 +119,7 @@ const LaunchDetail = () => {
                 }
                 <div className="pageNav" style={{padding: "50px 0"}}>
                     <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} style={parseInt(id)-1 <= 0 ? disabled: null } onClick={() => changePage()}><NavButton><b>{"<"}</b></NavButton></Link>
-                    <h3>{launch.mission_name}</h3>
+                    <h3 style={{textAlign: "center"}}>{launch.mission_name}</h3>
                     <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} style={parseInt(id)+1 >= latest ? disabled: null } onClick={() => changePage()}><NavButton> <b>{">"}</b></NavButton></Link>
                 </div>   
         </motion.div>
