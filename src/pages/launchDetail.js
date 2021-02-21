@@ -62,7 +62,7 @@ const LaunchDetail = () => {
                       
                     <div className="pageNav" >
                         <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} style={parseInt(id)-1 <= 0 ? disabled: null } onClick={() => changePage()}><NavButton><b>{"<"}</b></NavButton></Link>
-                        <a href="#content"><NavButton>View Detail</NavButton></a>
+                        <a href="#content"><NavButton style={{padding: "1.25vmin 2.5vmin"}}>View Detail</NavButton></a>
                         <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} style={parseInt(id)+1 > latest ? disabled: null } onClick={() => changePage()}><NavButton> <b>{">"}</b></NavButton></Link>
                     </div>    
                 </div>
@@ -171,11 +171,11 @@ const ViewButton = styled.button`
 const NavButton = styled.button`
     background: #FFF;
     border: 2px solid transparent;
-    padding: 1.25vmin 2.5vmin;
+    padding: 7px 17px;
     margin: 0 15px;
     transition: 0.25s;
     font-size: 1.1rem;
-    border-radius: 100px;
+    border-radius: 40px;
     :hover{
         background: transparent;
         color: #FFF;
