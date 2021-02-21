@@ -113,7 +113,7 @@ const Launches = () => {
                                                     <h3 style={{color: "#999"}}>Unknown</h3>
                                                 :        
                                                 <h3 style={{color: "rgb(255, 58, 58)"}}>Launch Fail</h3>}
-                                            <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`, state: {launchState: value}}}  style={{textDecoration: "none"}}> 
+                                            <Link to={{pathname: `/SpaceXRocketApp/launchDetail/${value.flight_number}`}}  style={{textDecoration: "none"}}> 
                                                 <ViewButton>View Detail</ViewButton> 
                                             </Link>
                                         </div>

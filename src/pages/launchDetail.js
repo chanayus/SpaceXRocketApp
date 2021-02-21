@@ -16,8 +16,8 @@ const LaunchDetail = () => {
         "launch_site": {},
         "launch_failure_details":{"time":"", "reason": ""},
     })
+    const [refresh, setRefresh] = useState(false)
     const { id } = useParams();
-
     useEffect(
         () => {
             const fetchLaunch = async () => {
@@ -29,8 +29,12 @@ const LaunchDetail = () => {
             }
             window.scroll(0, 0); 
             fetchLaunch()  
-        }, []
+        }, [refresh]
     );
+
+    const changePage = (e) =>{
+        setRefresh(!refresh)
+    }
 
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
@@ -40,6 +44,10 @@ const LaunchDetail = () => {
                         <h1  className="headerText" style={{ width: "80%", marginBottom: 0 }}>{launch.mission_name}</h1>
                         <h2 className="text-shadow" style={{ marginTop: 10 }}> {launch.rocket.rocket_name}</h2>
                         <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
+                        <div className="pageNav">
+                            <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} onClick={() => changePage()}><ViewButton>Prev</ViewButton></Link>
+                            <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} onClick={() => changePage()}><ViewButton>Next</ViewButton></Link>
+                        </div>
                     </div>
                 </div>
             </div>

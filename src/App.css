@@ -18,6 +18,7 @@ body{
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+  transition: 0.5s;
 }
 
 .wrapper{
@@ -77,6 +78,7 @@ img{
   max-width: 100%;
   height: auto;
   object-fit: cover;
+  transition: 0.25s;
 }
 input, button{
   font-family: 'Poppins', sans-serif;
@@ -106,6 +108,7 @@ button{
   -webkit-animation: spin 2s ease-out infinite; /* Safari */
   animation: spin 1s ease-out infinite;
 }
+
 
 /* Safari */
 @-webkit-keyframes spin {
