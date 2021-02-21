@@ -36,15 +36,22 @@ const RocketDetail = () => {
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg[rocket.rocket_name]})` }}>
+                
                 <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.325)"}}>
-                    <div data-aos="fade-right" data-aos-delay="270"  className="container">
-                        <h1 className="headerText" style={{ width: "70%", marginBottom: 20 }}>{rocket.rocket_name}</h1>
-                        <h3 className="text-shadow">{rocket.description}</h3>
-                        <p style={{fontSize: "1.3rem"}} className="text-shadow">{rocket.country}</p>
+                <div />
+                    <div>
+                        <div data-aos="fade-right" data-aos-delay="270"  className="container">
+                            <h1 className="headerText" style={{ width: "70%", marginBottom: 20 }}>{rocket.rocket_name}</h1>
+                            <p style={{fontSize: "1.055rem"}} className="text-shadow">{rocket.description}</p>
+                            <p style={{fontSize: "1.2rem"}} className="text-shadow">{rocket.country}</p>
+                        </div>
                     </div>
+                    <div className="pageNav" >                 
+                        <a href="#content"><NavButton>View Detail</NavButton></a>
+                    </div>  
                 </div>
             </div>
-            <div className="container">
+            <div className="container" id="content">
                 <h1 className="headerText" style={{fontSize: "8vmin"}}>Rocket Specifications</h1>
                 <hr />
             </div>
@@ -100,7 +107,7 @@ const RocketDetail = () => {
                 <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
                 <FlexDiv className="" style={{ justifyContent:"center"}}>
                     {rocket.flickr_images.map((val, index) => {
-                        return <ImgRocket key={index} src={val} alt="img" />
+                        return <ImgRocket key={index} src={val} alt="img" width="406" height="406" />
                     })}
                 </FlexDiv>
             </div>
@@ -116,13 +123,29 @@ const ImgRocket = styled.img`
     transition: 0.35s;
     margin: 0 5px;
     padding-bottom: 25px;
-
-
 `
 const DivContainer = styled.div`
     padding: 1vmin 20px;
     background-size: cover;
     background-attachment: fixed;
     
+`
+
+const NavButton = styled.button`
+    background: #FFF;
+    border: 2px solid transparent;
+    padding: 1.25vmin 2.5vmin;
+    margin: 0 15px;
+    transition: 0.25s;
+    font-size: 1.1rem;
+    border-radius: 100px;
+    :hover{
+        background: transparent;
+        color: #FFF;
+        border: 2px solid #FFF;
+    }
+    b{
+        font-size: 1.25rem;
+    }
 `
 export default RocketDetail;

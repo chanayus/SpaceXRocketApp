@@ -27,7 +27,7 @@ const Home = () => {
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }} >
             <Navbar />
-            <DivContainer className="content-flex" style={{ backgroundImage: `url(${bg1})`, justifyContent: "flex-start" }}>
+            <DivContainer className="content-flex" style={{ backgroundImage: `url(${bg1})`}}>
                 <FlexDiv className="container">
                     <div data-aos="fade-up" style={{width: "80%"}}>
                         <img src={logo} alt="logo" width="541" height="88"/>
@@ -37,48 +37,58 @@ const Home = () => {
             </DivContainer>
             <DivContainer className="content-flex" style={{ backgroundImage: `url(${starlinkImg})` }}>
                 <FlexDiv className="container">
-                    <div data-aos="fade-right" data-aos-delay="270">
+                    <div data-aos="fade-up">
                         <img src={starlinkLogo} alt="logo" width="500" height="241"/>
-                        <p style={{ color: "#FFF" }}>Starlink is a satellite internet constellation being constructed by SpaceX providing satellite Internet access.</p>
+                        <p style={{ color: "#FFF",  }}>Starlink is a satellite internet constellation being constructed by SpaceX providing satellite Internet access.</p>
                     </div>
                 </FlexDiv>
             </DivContainer>
-            <DivContainer className="content-flex" style={{backgroundImage: `url(${bg2})`, paddingBottom: "10vmin", paddingTop:"12vmin", backgroundPosition: "bottom"}}>
-                <FlexDiv className="container" style={{justifyContent: "space-around", alignItems: "center"}} >
-                    <div style={{width: 510}} data-aos="fade-right">
-                        <h1 className="text-shadow"style={{fontSize: "7.1vmin"}}>About SpaceX</h1>
-                        <ul className="text-shadow">
-                            <li><b>Founder : </b> {info.founder}</li>
-                            <li><b>Founded : </b>{info.founded}</li>
-                            <li><b>Employees : </b>{info.employees.toLocaleString()}</li>
-                            <li><b>Valuation : </b>{info.valuation.toLocaleString()}</li>
-                            <li><b>Headquarters : </b>{info.headquarters.address}, {info.headquarters.city}, {info.headquarters.state}</li>
-                        </ul>
-                    </div>   
-                    <div style={{width: 470}} data-aos="fade-right">
-                        <ImgRocket src={bg3} alt="logo" width="500" height="280"/>  
-                    </div>                  
-                </FlexDiv>  
-            </DivContainer>
-            <DivContainer className="content-flex" style={{ "padding": "2vmin",textAlign:"center"}}>
+            <DynamicDiv className="content-flex" style={{backgroundImage: `url(${bg2})`, backgroundPosition: "bottom"}}>
+                <div className="container">
+                    <FlexDiv  style={{justifyContent: "space-around", alignItems: "center"}} >
+                        <div data-aos="fade-right" >
+                            <h1 className="text-shadow"style={{fontSize: "7.1vmin", marginBottom: 0}}>About SpaceX</h1>
+                            <ul className="text-shadow">
+                                <li><b>Founder : </b> {info.founder}</li>
+                                <li><b>Founded : </b>{info.founded}</li>
+                                <li><b>Employees : </b>{info.employees.toLocaleString()}</li>
+                                <li><b>Valuation : </b>{info.valuation.toLocaleString()}</li>
+                                <li><b>Headquarters : </b>{info.headquarters.address}, {info.headquarters.city}, {info.headquarters.state}</li>
+                            </ul>
+                        </div>   
+                        <div data-aos="fade-right">
+                            <ImgRocket src={bg3} alt="logo" width="500" height="280"/>  
+                        </div>                  
+                    </FlexDiv>  
+                </div>
+            </DynamicDiv>
+            <FlexDiv className="content-flex" style={{ "padding": "10px 0",textAlign:"center", justifyContent: "center"}}>
                 <A href={info.links.website}>Website</A>
                 <A href={info.links.flickr}>Flickr</A>
                 <A href={info.links.twitter}>Twitter</A>
                 <A href={info.links.elon_twitter}>Elon Musk</A>
-            </DivContainer>
+            </FlexDiv>
         </motion.div>
     )
 }
 
 const DivContainer = styled.div`
-    padding: 42vmin 20px;
+    height: 100vh;
     background-size: cover;
     background-attachment: fixed;
+    display: flex;
+    align-items: center;
     
+`
+const DynamicDiv = styled.div`
+    padding: 16vmin 0 5vmin 0;
+    background-size: cover;
+    background-attachment: fixed;
 `
 const FlexDiv = styled.div`
     display: flex;
     flex-wrap: wrap-reverse;
+    width: 100%;
     
 `
 

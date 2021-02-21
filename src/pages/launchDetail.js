@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import launchNull from '../img/launch-null.webp'
 
 const LaunchDetail = () => {
+    const [latest, setLatest] = useState()
     const [launch, setLaunch] = useState({ 
         "rocket": { "rocket_name": "", "rocket_type": "" }, 
         "mission_id": [""],
@@ -26,6 +27,11 @@ const LaunchDetail = () => {
                 const d = new Date(data.launch_date_utc)
                 data.launch_date_utc = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"  "+d.getUTCHours()+":"+d.getUTCMinutes()
                 setLaunch(data)
+
+                
+                const latestRes = await fetch('https://api.spacexdata.com/v3/launches/latest')
+                const dataRes = await latestRes.json()
+                setLatest(parseInt(dataRes.flight_number)+1)
             }
             window.scroll(0, 0); 
             fetchLaunch()  
@@ -36,22 +42,33 @@ const LaunchDetail = () => {
         setRefresh(!refresh)
     }
 
+    const disabled = {
+        opacity: 0.4,
+        pointerEvents: "none"
+    }
+
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${launch.links.flickr_images[0] === undefined ? launchNull : launch.links.flickr_images[0]})` }}>
-                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.225)"}}>
-                    <div className="container">
-                        <h1  className="headerText" style={{ width: "80%", marginBottom: 0 }}>{launch.mission_name}</h1>
-                        <h2 className="text-shadow" style={{ marginTop: 10 }}> {launch.rocket.rocket_name}</h2>
-                        <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
-                        <div className="pageNav">
-                            <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} onClick={() => changePage()}><ViewButton>Prev</ViewButton></Link>
-                            <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} onClick={() => changePage()}><ViewButton>Next</ViewButton></Link>
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.3)"}}>
+                    <div/>
+                    <div> 
+                        <div className="container">
+                            <h1 className="headerText" style={{ width: "80%", marginBottom: 0 }}>{launch.mission_name}</h1>
+                            <h2 className="text-shadow" style={{ marginTop: 10 }}> {launch.rocket.rocket_name}</h2>
+                            <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launch.rocket.rocket_id}` }}><ViewButton>View Rocket Detail</ViewButton></Link>
                         </div>
-                    </div>
+                    </div> 
+                      
+                    <div className="pageNav" >
+                        <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} style={parseInt(id)-1 <= 0 ? disabled: null } onClick={() => changePage()}><NavButton><b>{"<"}</b></NavButton></Link>
+                        <a href="#content"><NavButton>View Detail</NavButton></a>
+                        <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} style={parseInt(id)+1 > latest ? disabled: null } onClick={() => changePage()}><NavButton> <b>{">"}</b></NavButton></Link>
+                    </div>    
                 </div>
+                
             </div>
-            <div className="container" style={{ paddingBottom: 10 }}>
+            <div className="container" id="content" style={{ paddingBottom: 10 }}>
                 <h1 className="headerText" style={{fontSize: "8vmin"}}>Launch Detail</h1>
                 <hr style={{marginBottom: 40}} />
                 {
@@ -59,7 +76,7 @@ const LaunchDetail = () => {
                     null
                     :
                     <center>
-                        <img src={launch.links.mission_patch_small} alt=""/>
+                        <img src={launch.links.mission_patch_small} alt="" width="240" height="240"/>
                     </center>
 
                 }
@@ -100,6 +117,10 @@ const LaunchDetail = () => {
                         </FlexDiv>
                     </div>
                 }
+                <div className="pageNav" style={{padding: "50px 0"}}>
+                    <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} style={parseInt(id)-1 <= 0 ? disabled: null } onClick={() => changePage()}><NavButton><b>{"< Prev"}</b></NavButton></Link>
+                    <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} style={parseInt(id)+1 >= latest ? disabled: null } onClick={() => changePage()}><NavButton> <b>{"Next >"}</b></NavButton></Link>
+                </div>   
         </motion.div>
     )
 }
@@ -144,6 +165,24 @@ const ViewButton = styled.button`
     :hover{
         background: #FFF;
         color: #555;
+    }
+`
+
+const NavButton = styled.button`
+    background: #FFF;
+    border: 2px solid transparent;
+    padding: 1.25vmin 2.5vmin;
+    margin: 0 15px;
+    transition: 0.25s;
+    font-size: 1.1rem;
+    border-radius: 100px;
+    :hover{
+        background: transparent;
+        color: #FFF;
+        border: 2px solid #FFF;
+    }
+    b{
+        font-size: 1.25rem;
     }
 `
 export default LaunchDetail;

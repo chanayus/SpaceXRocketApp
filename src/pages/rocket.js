@@ -21,10 +21,12 @@ const Rocket = () => {
     );
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
-            <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg})` }}>
-                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
-                    <div className="container">
-                    <h1 data-aos="fade-right" data-aos-delay="270" className="headerText">ROCKETS</h1>
+            <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg})`, height:"90vh" }}>
+                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.1)",justifyContent: "center"}}>
+                    <div>
+                        <div className="container">
+                            <h1 data-aos="fade-right" data-aos-delay="270" className="headerText">ROCKETS</h1>
+                        </div>
                     </div>
                 </div>
             </div>
