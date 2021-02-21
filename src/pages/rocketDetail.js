@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion"
@@ -8,10 +8,11 @@ const RocketDetail = () => {
         "height": {},
         "diameter": {},
         "mass": {},
+        "engines": {},
         "landing_legs": {},
         "flickr_images": [],
-        "first_stage":{"thrust_sea_level":{}},
-        "second_stage":{"thrust":{}} 
+        "first_stage": { "thrust_sea_level": {} },
+        "second_stage": { "thrust": {} }
     })
     const { rocket_id } = useParams();
 
@@ -22,37 +23,37 @@ const RocketDetail = () => {
                 const data = await response.json()
                 setRocket(data)
             }
-            window.scroll(0, 0); 
-            Aos.init({duration: 500, delay: 100})              
+            window.scroll(0, 0);
+            Aos.init({ duration: 500, delay: 100 })
             fetchRocket()
         }, []
     );
     const rocketBg = {
-        "Falcon Heavy":"https://live.staticflickr.com/631/21048044876_bae2435d96_k.jpg",
-        "Falcon 9":"https://live.staticflickr.com/3865/32945170225_e5b87acce0_k.jpg",
+        "Falcon Heavy": "https://live.staticflickr.com/631/21048044876_bae2435d96_k.jpg",
+        "Falcon 9": "https://live.staticflickr.com/3865/32945170225_e5b87acce0_k.jpg",
         "Starship": "https://live.staticflickr.com/65535/50703878421_4c2b6e88c7_k.jpg",
-        "Falcon 1":"https://live.staticflickr.com/65535/50241845831_79a60b6066_k.jpg"
+        "Falcon 1": "https://live.staticflickr.com/65535/50241845831_79a60b6066_k.jpg"
     }
     return (
-        <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg[rocket.rocket_name]})` }}>
-                
-                <div className="wrapper" style={{backgroundColor: "rgba(0, 0, 0, 0.325)"}}>
-                <div />
+
+                <div className="wrapper" style={{ backgroundColor: "rgba(0, 0, 0, 0.325)" }}>
+                    <div />
                     <div>
-                        <div data-aos="fade-right" data-aos-delay="270"  className="container">
+                        <div data-aos="fade-right" data-aos-delay="270" className="container">
                             <h1 className="headerText" style={{ width: "70%", marginBottom: 20 }}>{rocket.rocket_name}</h1>
-                            <p style={{fontSize: "1.055rem"}} className="text-shadow">{rocket.description}</p>
-                            <p style={{fontSize: "1.2rem"}} className="text-shadow">{rocket.country}</p>
+                            <p style={{ fontSize: "1.055rem" }} className="text-shadow">{rocket.description}</p>
+                            <p style={{ fontSize: "1.2rem" }} className="text-shadow">{rocket.country}</p>
                         </div>
                     </div>
-                    <div className="pageNav" >                 
+                    <div className="pageNav" >
                         <a href="#content"><NavButton>View Detail</NavButton></a>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <div className="container" id="content">
-                <h1 className="headerText" style={{fontSize: "8vmin"}}>Rocket Specifications</h1>
+                <h1 className="headerText" style={{ fontSize: "8vmin" }}>Rocket Specifications</h1>
                 <hr />
             </div>
             <DivContainer className="content-flex">
@@ -61,6 +62,7 @@ const RocketDetail = () => {
                         <h1 style={{ textAlign: "center" }}>About</h1>
                         <hr />
                         <ul>
+                            <li><b>Engine name : </b>{rocket.engines.number} {rocket.engines.type} {rocket.engines.version}</li>
                             <li><b>First flight : </b>{rocket.first_flight}</li>
                             <li><b>Cost per Launch : </b>${rocket.cost_per_launch}</li>
                             <li><b>Country of origin : </b>{rocket.country}</li>
@@ -80,7 +82,7 @@ const RocketDetail = () => {
                             <li><b>Legs of Rocket : </b>{rocket.landing_legs.number}</li>
                             <li><b>Material : </b>{rocket.landing_legs.material ? rocket.landing_legs.material : "N/A"}</li>
                         </ul>
-                        
+
                     </div>
                     <div style={{ width: 500 }}>
                         <h1 style={{ textAlign: "center" }}>First Stage</h1>
@@ -90,7 +92,7 @@ const RocketDetail = () => {
                             <li><b>Burn time : </b>{rocket.first_stage.burn_time_sec} s</li>
                             <li><b>Thrust : </b>{rocket.first_stage.thrust_sea_level.kN} kN ({rocket.first_stage.thrust_sea_level.lbf} lbf)</li>
                         </ul>
-          
+
                     </div>
                     <div style={{ width: 500 }}>
                         <h1 style={{ textAlign: "center" }}>Second Stage</h1>
@@ -103,13 +105,16 @@ const RocketDetail = () => {
                     </div>
                 </FlexDiv>
             </DivContainer>
-            <div className="container" style={{marginTop: 50, marginBottom: 50}}>
-                <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
-                <FlexDiv className="" style={{ justifyContent:"center"}}>
+            <div className="container" style={{ marginTop: 50, marginBottom: 20 }}>
+                <h1 style={{ fontSize: "5vmin" }}>Gallery</h1>
+                <FlexDiv className="" style={{ justifyContent: "center" }}>
                     {rocket.flickr_images.map((val, index) => {
                         return <ImgRocket key={index} src={val} alt="img" width="406" height="406" />
                     })}
                 </FlexDiv>
+            </div>
+            <div style={{paddingBottom:"20px",display:"flex",alignItems:"center",justifyContent:"center"}} >
+                <a href={rocket.wikipedia}><NavButton>Read more in Wikipedia</NavButton></a>
             </div>
         </motion.div>
     )
