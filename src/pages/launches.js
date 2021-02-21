@@ -10,7 +10,8 @@ const Launches = () => {
     const [defaultLaunches, setDefaultLaunches] = useState([])
     const [success, setSuccess] = useState(undefined)
     const [text, setText] = useState("")
-    const [year, setYear] = useState(false)
+    const [selectYear, setSelectYear] = useState("default")
+    const [year, setYear] = useState([])
     const [status, setStatus] = useState("Please Wait")
 
     useEffect(
@@ -18,6 +19,11 @@ const Launches = () => {
             const fetchLaunches = async () => {
                 const response = await fetch('https://api.spacexdata.com/v3/launches')
                 const data = await response.json()
+
+                const set = new Set(data.map((item) => item.launch_year))
+                const allYear = Array.from(set)
+
+                setYear(allYear)
                 setStatus("No Result")
                 setLaunches(data)
                 setDefaultLaunches(data)
@@ -35,43 +41,57 @@ const Launches = () => {
         }))
     }, [text])
 
-    const yearFilter = () =>{
-        resetFilter() 
-        if(year){
-            const yearSorted = defaultLaunches.sort((a, b) => {return a.launch_year-b.launch_year})
-            setLaunches([...yearSorted])
-            setYear(false)
+    const yearFilter = (e) =>{
+        setSelectYear(e)
+        if(success === undefined){
+            const currentSuccess = defaultLaunches.map((value) => {return value})
+            setLaunches(
+                e === "Oldest" ? currentSuccess.sort((a, b) => {return a.launch_year-b.launch_year}) 
+                : e === "Latest" ? currentSuccess.sort((b, a) => {return a.launch_year-b.launch_year}) 
+                : currentSuccess.filter((value) => value.launch_year == e)
+            )
         }
         else{
-            const yearSorted = defaultLaunches.sort((a, b) => {return b.launch_year-a.launch_year})
-            setLaunches([...yearSorted])
-            setYear(true)
+            const currentSuccess = defaultLaunches.filter((value) => value.launch_success == success)
+            setLaunches(
+                e === "Oldest" ? currentSuccess.sort((a, b) => {return a.launch_year-b.launch_year}) 
+                : e === "Latest" ? currentSuccess.sort((b, a) => {return a.launch_year-b.launch_year}) 
+                : currentSuccess.filter((value) => value.launch_year == e)
+            )
         }
     }
 
-    const successFilter = () =>{
-        resetFilter()
+    const successFilter = () =>{    
+        const currentYear = 
+            selectYear === "Oldest" ? defaultLaunches.sort((a, b) => {return a.launch_year-b.launch_year}) 
+            : selectYear === "Latest" ? defaultLaunches.sort((b, a) => {return a.launch_year-b.launch_year}) 
+            : selectYear === "default" ? defaultLaunches 
+            : defaultLaunches.filter((value) => value.launch_year == selectYear)
+
         if(success){
-            const successSort = defaultLaunches.filter((value) => !value.launch_success)
+            const successSort = currentYear.filter((value) => value.launch_success === false)
             setLaunches(successSort)
             setSuccess(false)
         }
         else if(success === false){
-            const successSort = defaultLaunches
+            const successSort = currentYear
             setLaunches(successSort)
             setSuccess(undefined)
         }
         else{
-            const successSort = defaultLaunches.filter((value) => value.launch_success)
+            const successSort = currentYear.filter((value) => value.launch_success)
             setLaunches(successSort)
             setSuccess(true)
         }
     }
 
     const resetFilter = () =>{
+        setLaunches(defaultLaunches)
+        setSelectYear("default")
         setSuccess(undefined)
-        setYear(false)
+
     }
+
     return (
         <motion.div initial={{ opacity:  0 }} animate={{ opacity:  1 }}>
             <div className="headerContainer" style={{ backgroundImage: `url(${launchBg})`, height:"90vh"  }}>
@@ -87,9 +107,15 @@ const Launches = () => {
                 <FilterDiv>
                     <input type="text" placeholder="Search Rocket Name" onChange={e => setText(e.target.value)} value={text}/>
                     <div>
-                        Sort By :            
-                        <button onClick={() => yearFilter()} style={{ background: year ? "#EEE" : "transparent", color: year ? "#111" : "#EEE"}}>Launch Year</button>
+                        Sort By :   
+                        <select name="slct" className="slct" onChange={(e) => yearFilter(e.target.value)} value={selectYear}>
+                            <option selected value="default" disabled>Select Year</option>
+                            <option value="Latest">Latest</option>
+                            <option value="Oldest">Oldest</option>
+                            {year.map((value, index) => <option key={index} value={value}>{value}</option>)}
+                         </select>
                         <button onClick={() => successFilter()} style={{background: success ? "rgb(102, 173, 93)" : success === false ? "rgb(199, 38, 38)" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
+                        <button onClick={() => resetFilter()}>Clear</button>
                     </div>       
                 </FilterDiv>
                 <FlexContainer>
@@ -109,7 +135,7 @@ const Launches = () => {
                                         <div style={{flex: 1}}>
                                             <h2 style={{fontSize: "1.38rem"}}>{value.rocket.rocket_name} ({value.mission_name})</h2>
                                             <h3>{value.launch_year}</h3>
-                                            {   value.launch_success ? 
+                                            {value.launch_success ? 
                                                     <h3 style={{color: "rgb(128, 214, 117)"}}>Launch Success</h3> 
                                                 : value.launch_success === null ?
                                                     <h3 style={{color: "#999"}}>Unknown</h3>
@@ -131,8 +157,6 @@ const Launches = () => {
             </div>
         </motion.div>
     )
-
-
 }
 const Card = styled.div`
     border-radius: 3px;
@@ -189,7 +213,7 @@ const FilterDiv = styled.div`
     color: #CCC;
     display: flex;
     flex-wrap: wrap;
-    button{
+    button, select{
         margin: 5px 10px;
         padding: 7px;
         background: none;
@@ -197,6 +221,11 @@ const FilterDiv = styled.div`
         border-radius: 5px;
         border: 2px solid #333;
         transition:0.25s;
+    }
+    option{
+        background: #333; 
+        font-size: 1.05rem;
+        border: none;
     }
     input{
         background: #333;
@@ -226,6 +255,10 @@ const FlightNum = styled.div`
         color: rgba(0,0,0,0.4);
         margin: 0;
     }
+`
+
+const Select = styled.select`
+
 `
 
 export default Launches
