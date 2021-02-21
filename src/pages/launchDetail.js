@@ -118,9 +118,9 @@ const LaunchDetail = () => {
                     </div>
                 }
                 <div className="pageNav" style={{padding: "50px 0"}}>
-                    <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} style={parseInt(id)-1 <= 0 ? disabled: null } onClick={() => changePage()}><NavButton><b>{"< Prev"}</b></NavButton></Link>
-                    <NavButton><b>{launch.mission_name}</b></NavButton>
-                    <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} style={parseInt(id)+1 >= latest ? disabled: null } onClick={() => changePage()}><NavButton> <b>{"Next >"}</b></NavButton></Link>
+                    <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)-1}` }} style={parseInt(id)-1 <= 0 ? disabled: null } onClick={() => changePage()}><NavButton><b>{"<"}</b></NavButton></Link>
+                    <h3>{launch.mission_name}</h3>
+                    <Link to={{ pathname: `/SpaceXRocketApp/launchDetail/${parseInt(id)+1}` }} style={parseInt(id)+1 >= latest ? disabled: null } onClick={() => changePage()}><NavButton> <b>{">"}</b></NavButton></Link>
                 </div>   
         </motion.div>
     )
