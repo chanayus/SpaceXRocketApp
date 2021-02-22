@@ -1,22 +1,15 @@
 import styled from 'styled-components'
-import bg1 from '../img/bg1.webp'
 import { Link } from "react-router-dom";
 const Error = () => {
     return (
-        <div>
-            <DivContainer className="content-flex" style={{ backgroundImage: `url(${bg1})`}}>
-                <FlexDiv className="container">
-                    <div style={{width: "80%"}}>
-                        <h1 style={{ color: "#FFF" }}>Ooooops!</h1>
-                        <p class="text">This page doesn't exist anymore.</p>
-                        <Link to="/SpaceXRocketApp"><NavButton>Go to Homepage</NavButton></Link>
-                    </div>
-                </FlexDiv>
-            </DivContainer>
-            <div class="emoji">😭</div>
-            <p class="title">Ooooops!</p>
-            <p class="text">This page doesn't exist anymore.</p>
-        </div>
+        <DivContainer>
+            <div>
+                <h1>404</h1>
+                <p class="title"> 😭Ooooops!</p>
+                <p class="text">This page doesn't exist anymore.</p>
+                <Link to="/SpaceXRocketApp"><NavButton>Go to Homepage</NavButton></Link>
+            </div>
+        </DivContainer>
     )
 }
 const DivContainer = styled.div`
@@ -25,12 +18,17 @@ const DivContainer = styled.div`
     background-attachment: fixed;
     display: flex;
     align-items: center;
-    
-`
-const FlexDiv = styled.div`
-    display: flex;
-    flex-wrap: wrap-reverse;
-    width: 100%;
+    justify-content: center;
+    text-align :center;
+    p{
+        font-size: 2rem;
+        margin: 15px 0;
+    }
+    h1{
+        font-size: 22vmin;
+        color: rgb(255, 255, 255, 0.35);
+        margin: 0;
+    }
     
 `
 const NavButton = styled.button`
