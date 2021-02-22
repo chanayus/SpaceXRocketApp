@@ -23,7 +23,6 @@ This project deploy by github page.\
 
 ## Desktop
 
-<center>
 **1. Homepage**
 
   ![Home Page for Desktop](/readme_img/home_desktop.jpg)
@@ -46,11 +45,9 @@ This project deploy by github page.\
 **5. LaunchDetail page**
 
   ![LaunchDetail Page for Desktop](/readme_img/launchDetail_desktop.jpg)
-</center>
 
 ## Mobile
 <br>
-<center>
 
 **1. Homepage**
 
