@@ -89,7 +89,7 @@ const Launches = () => {
         setLaunches(defaultLaunches)
         setSelectYear("default")
         setSuccess(undefined)
-
+        setText("")
     }
 
     return (
