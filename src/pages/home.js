@@ -1,3 +1,4 @@
+import React from 'react'
 import logo from '../img/spXlogo.png'
 import styled from 'styled-components'
 import Aos from "aos";

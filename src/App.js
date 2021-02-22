@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css';
 import Rocket from './pages/rocket'
 import Home from './pages/home'
