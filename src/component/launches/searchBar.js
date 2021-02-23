@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year}) => {
+const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launches}) => {
     const {success, text, selectYear} = filter
     useEffect(() =>{
-        setLaunches(defaultLaunches.filter(value =>{
+        setLaunches(launches.filter(value =>{
             const name = value.rocket.rocket_name+value.mission_name
             return name.toLowerCase().includes(text.toLowerCase())
         }))   

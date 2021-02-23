@@ -1,5 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
-
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from "framer-motion"
 import launchBg from '../img/launch-bg.webp'
@@ -51,7 +50,7 @@ const Launches = () => {
                 </div>
             </div>
             <div className="container">
-                { defaultLaunches.length === 0 ? null : <SearchBar defaultLaunches={defaultLaunches} setLaunches={setLaunches} filter={filter} setFilter={setFilter} year={year}/> }
+                { defaultLaunches.length === 0 ? null : <SearchBar defaultLaunches={defaultLaunches} setLaunches={setLaunches} launches={launches} filter={filter} setFilter={setFilter} year={year}/> }
                 <FlexContainer>
                     { 
                         launches.length == 0 ?

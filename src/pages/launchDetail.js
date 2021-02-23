@@ -82,12 +82,12 @@ const LaunchDetail = () => {
                 }
                 <P>{launch.details}</P>
                 <ul style={{ padding: 0 }}>
-                    <LI><b>Flight Number </b>: {launch.flight_number}</LI>
+                    <LI><b>Flight Number :</b> {launch.flight_number}</LI>
                     <LI><b>Mission Name :</b> {launch.mission_name} {launch.mission_id[0] === undefined ? null : `(${launch.mission_id[0]})`}</LI>
                     <LI><b>Launch Year :</b> {launch.launch_year}</LI>
                     <LI><b>Launch Date :</b> {launch.launch_date_utc}</LI>
-                    <LI><b>Rocket Name:</b> {launch.rocket.rocket_name}</LI>
-                    <LI><b>Rocket Type:</b> {launch.rocket.rocket_type}</LI>
+                    <LI><b>Rocket Name :</b> {launch.rocket.rocket_name}</LI>
+                    <LI><b>Rocket Type :</b> {launch.rocket.rocket_type}</LI>
                     <LI><b>Launch Site :</b> {launch.launch_site.site_name}</LI>
                     <LI><b>Launch Result :</b> {launch.launch_success ? "Success" : launch.launch_success === null ? "Unknown" : "Fail"}</LI>
                     {
