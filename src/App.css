@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 *{
   font-family: 'Poppins', sans-serif; 
+  outline: none;
 }
 
 select, button, input, option{
@@ -126,6 +127,21 @@ img{
   animation: spin 1s ease-out infinite;
 }
 
+.imageGrid{
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
+  grid-gap: 20px;
+  overflow: hidden;
+  grid-auto-flow: dense;
+  justify-content: center;
+}
+
+.imageGallery{
+  object-fit: cover;
+  transition: 0.35s;
+  width: 100%;
+  height: 100%;
+} 
 
 /* Safari */
 @-webkit-keyframes spin {

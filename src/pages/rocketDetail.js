@@ -107,11 +107,11 @@ const RocketDetail = () => {
             </DivContainer>
             <div className="container" style={{ marginTop: 50, marginBottom: 20 }}>
                 <h1 style={{ fontSize: "5vmin" }}>Gallery</h1>
-                <FlexDiv className="" style={{ justifyContent: "center" }}>
+                <div className="imageGrid">
                     {rocket.flickr_images.map((val, index) => {
-                        return <ImgRocket key={index} src={val} alt="img" width="406" height="406" />
+                        return <img className="imageGallery" key={index} src={val} alt="img" width="406" height="406" />
                     })}
-                </FlexDiv>
+                </div>
             </div>
             <div style={{paddingBottom:"20px",display:"flex",alignItems:"center",justifyContent:"center"}} >
                 <a href={rocket.wikipedia}><NavButton>Read more in Wikipedia</NavButton></a>
@@ -123,19 +123,13 @@ const FlexDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
 `
-const ImgRocket = styled.img`
-    width: 406px;
-    transition: 0.35s;
-    margin: 0 5px;
-    padding-bottom: 25px;
-`
+
 const DivContainer = styled.div`
     padding: 1vmin 20px;
     background-size: cover;
     background-attachment: fixed;
     
 `
-
 const NavButton = styled.button`
     background: #FFF;
     border: 2px solid transparent;

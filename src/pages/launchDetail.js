@@ -110,11 +110,11 @@ const LaunchDetail = () => {
                     :
                     <div className="container" style={{paddingBottom: 30}}>
                         <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
-                        <FlexDiv style={{ justifyContent: "center" }}>
+                        <div className="imageGrid" style={{ justifyContent: "center" }}>
                             {launch.links.flickr_images.map((val, index) => {
-                            return (<ImgLaunch key={index} src={val} alt="img" width="300"/>)
+                                return (<img className="imageGallery" key={index} src={val} alt="img" width="300"/>)
                             })}
-                        </FlexDiv>
+                        </div>
                     </div>
                 }
                 <div className="pageNav" style={{padding: "50px 0"}}>
@@ -137,21 +137,6 @@ const P = styled.p`
     font-size: 1.05rem;
     padding: 25px 0;
     color: #FFF;
-`
-const FlexDiv = styled.div`
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
-    grid-gap: 20px;
-    overflow: hidden;
-    grid-auto-flow: dense;
-    
-`
-const ImgLaunch = styled.img`
-    object-fit: cover;
-    transition: 0.35s;
-    width: 100%;
-    height: 100%;
-    
 `
 
 const ViewButton = styled.button`
