@@ -1,14 +1,38 @@
-import React , { useEffect } from 'react';
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launches}) => {
     const {success, text, selectYear} = filter
+    const [scrollTop, SetscrollTop] = useState(window.scrollY)
+    
     useEffect(() =>{
         setLaunches(launches.filter(value =>{
             const name = value.rocket.rocket_name+value.mission_name
             return name.toLowerCase().includes(text.toLowerCase())
         }))   
     }, [text])
+
+    useEffect(() => {
+        function handleScroll() {
+            SetscrollTop(window.scrollY)
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const paddingTop = () => {
+        console.log(scrollTop, (window.innerHeight*0.9)-75)
+        if (scrollTop >= (window.innerHeight*0.9)-75) {
+            return "90px"
+        }
+        else {
+            return "20px"
+        }
+    }
 
     const yearFilter = (e) =>{
         filter.selectYear = e
@@ -64,14 +88,14 @@ const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launc
     }
 
     return (
-        <FilterDiv>
-            <input type="text" placeholder="Search Rocket Name" onChange={e => setFilter({success: success, text:e.target.value, selectYear: selectYear})} value={filter.text}/>
+        <FilterDiv style={{paddingTop: paddingTop()}}>
+            <input type="text" placeholder="Search By Name" onChange={e => setFilter({success: success, text:e.target.value, selectYear: selectYear})} value={filter.text}/>
             <div>
                 Sort By :   
-                <select name="slct" className="slct" onChange={(e) => yearFilter(e.target.value)} value={selectYear}>
+                <select name="selectYear" onChange={(e) => yearFilter(e.target.value)} value={selectYear}>
                     <option selected value="default" disabled>Select Year</option>
                     <option value="Latest">Latest</option>
-                    <option value="Oldest">Oldest</option>
+                    <option value="Oldest">Oldest (default)</option>
                     {year.map((value, index) => <option key={index} value={value}>{value}</option>)}
                 </select>
                 <button onClick={() => successFilter()} style={{background: success ? "rgb(78, 135, 72)" : success === false ? "rgb(199, 38, 38)" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
@@ -84,8 +108,13 @@ const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launc
 const FilterDiv = styled.div`
     padding: 20px 0 0 10px;
     color: #CCC;
+    background :#0e0e0e;
     display: flex;
     flex-wrap: wrap;
+    position: sticky;
+    transition:0.25s;
+    top: 0;
+    z-index: 99;
     button, select{
         margin: 5px 10px;
         padding: 7px;
