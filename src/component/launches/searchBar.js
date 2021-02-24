@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React , { useEffect } from 'react';
 import styled from 'styled-components'
 
 const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launches}) => {
