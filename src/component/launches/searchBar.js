@@ -89,7 +89,7 @@ const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launc
 
     return (
         <FilterDiv style={{paddingTop: paddingTop()}}>
-            <input type="text" placeholder="Search Rocket Name" onChange={e => setFilter({success: success, text:e.target.value, selectYear: selectYear})} value={filter.text}/>
+            <input type="text" placeholder="Search By Name" onChange={e => setFilter({success: success, text:e.target.value, selectYear: selectYear})} value={filter.text}/>
             <div>
                 Sort By :   
                 <select name="selectYear" onChange={(e) => yearFilter(e.target.value)} value={selectYear}>
