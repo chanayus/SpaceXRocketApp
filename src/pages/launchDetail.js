@@ -82,12 +82,12 @@ const LaunchDetail = () => {
                 }
                 <P>{launch.details}</P>
                 <ul style={{ padding: 0 }}>
-                    <LI><b>Flight Number </b>: {launch.flight_number}</LI>
+                    <LI><b>Flight Number :</b> {launch.flight_number}</LI>
                     <LI><b>Mission Name :</b> {launch.mission_name} {launch.mission_id[0] === undefined ? null : `(${launch.mission_id[0]})`}</LI>
                     <LI><b>Launch Year :</b> {launch.launch_year}</LI>
                     <LI><b>Launch Date :</b> {launch.launch_date_utc}</LI>
-                    <LI><b>Rocket Name:</b> {launch.rocket.rocket_name}</LI>
-                    <LI><b>Rocket Type:</b> {launch.rocket.rocket_type}</LI>
+                    <LI><b>Rocket Name :</b> {launch.rocket.rocket_name}</LI>
+                    <LI><b>Rocket Type :</b> {launch.rocket.rocket_type}</LI>
                     <LI><b>Launch Site :</b> {launch.launch_site.site_name}</LI>
                     <LI><b>Launch Result :</b> {launch.launch_success ? "Success" : launch.launch_success === null ? "Unknown" : "Fail"}</LI>
                     {
@@ -110,11 +110,11 @@ const LaunchDetail = () => {
                     :
                     <div className="container" style={{paddingBottom: 30}}>
                         <h1 style={{fontSize: "5vmin"}}>Gallery</h1>
-                        <FlexDiv style={{ justifyContent: "center" }}>
+                        <div className="imageGrid" style={{ justifyContent: "center" }}>
                             {launch.links.flickr_images.map((val, index) => {
-                            return (<ImgLaunch key={index} src={val} alt="img" width="300"/>)
+                                return (<img className="imageGallery" key={index} src={val} alt="img" width="300"/>)
                             })}
-                        </FlexDiv>
+                        </div>
                     </div>
                 }
                 <div className="pageNav" style={{padding: "50px 0"}}>
@@ -137,21 +137,6 @@ const P = styled.p`
     font-size: 1.05rem;
     padding: 25px 0;
     color: #FFF;
-`
-const FlexDiv = styled.div`
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
-    grid-gap: 20px;
-    overflow: hidden;
-    grid-auto-flow: dense;
-    
-`
-const ImgLaunch = styled.img`
-    object-fit: cover;
-    transition: 0.35s;
-    width: 100%;
-    height: 100%;
-    
 `
 
 const ViewButton = styled.button`
