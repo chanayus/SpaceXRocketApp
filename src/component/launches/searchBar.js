@@ -112,6 +112,7 @@ const FilterDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     position: sticky;
+    transition:0.25s;
     top: 0;
     z-index: 99;
     button, select{
