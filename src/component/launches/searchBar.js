@@ -1,14 +1,38 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launches}) => {
     const {success, text, selectYear} = filter
+    const [scrollTop, SetscrollTop] = useState(window.scrollY)
+    
     useEffect(() =>{
         setLaunches(launches.filter(value =>{
             const name = value.rocket.rocket_name+value.mission_name
             return name.toLowerCase().includes(text.toLowerCase())
         }))   
     }, [text])
+
+    useEffect(() => {
+        function handleScroll() {
+            SetscrollTop(window.scrollY)
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const paddingTop = () => {
+        console.log(scrollTop, (window.innerHeight*0.9)-75)
+        if (scrollTop >= (window.innerHeight*0.9)-75) {
+            return "90px"
+        }
+        else {
+            return "20px"
+        }
+    }
 
     const yearFilter = (e) =>{
         filter.selectYear = e
@@ -64,7 +88,7 @@ const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launc
     }
 
     return (
-        <FilterDiv>
+        <FilterDiv style={{paddingTop: paddingTop()}}>
             <input type="text" placeholder="Search Rocket Name" onChange={e => setFilter({success: success, text:e.target.value, selectYear: selectYear})} value={filter.text}/>
             <div>
                 Sort By :   
@@ -84,8 +108,12 @@ const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launc
 const FilterDiv = styled.div`
     padding: 20px 0 0 10px;
     color: #CCC;
+    background :#0e0e0e;
     display: flex;
     flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 99;
     button, select{
         margin: 5px 10px;
         padding: 7px;
