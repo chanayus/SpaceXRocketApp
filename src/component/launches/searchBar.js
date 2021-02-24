@@ -92,10 +92,10 @@ const SearchBar = ({defaultLaunches, setLaunches, filter, setFilter, year, launc
             <input type="text" placeholder="Search Rocket Name" onChange={e => setFilter({success: success, text:e.target.value, selectYear: selectYear})} value={filter.text}/>
             <div>
                 Sort By :   
-                <select name="slct" className="slct" onChange={(e) => yearFilter(e.target.value)} value={selectYear}>
+                <select name="selectYear" onChange={(e) => yearFilter(e.target.value)} value={selectYear}>
                     <option selected value="default" disabled>Select Year</option>
                     <option value="Latest">Latest</option>
-                    <option value="Oldest">Oldest</option>
+                    <option value="Oldest">Oldest (default)</option>
                     {year.map((value, index) => <option key={index} value={value}>{value}</option>)}
                 </select>
                 <button onClick={() => successFilter()} style={{background: success ? "rgb(78, 135, 72)" : success === false ? "rgb(199, 38, 38)" : "#111"}}>Launch Result : {success ? "Success" : success === false ? "Fail" : "Any"}</button>
