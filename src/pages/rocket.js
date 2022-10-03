@@ -30,7 +30,7 @@ const Rocket = () => {
           {!loading ? (
             <FlexContainer key="show-data" style={{ marginBottom: 50 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               {data?.rockets.map((value, index) => (
-                <Link key={index} to={{ pathname: `/SpaceXRocketApp/rocketDetail/${value?.id}` }} style={{ textDecoration: "none", width: "55vmin" }}>
+                <Link key={index} to={{ pathname: `/rocketDetail/${value?.id}` }} style={{ textDecoration: "none", width: "55vmin" }}>
                   <Card>
                     <h1>{index + 1}</h1>
                     <p>{value?.name}</p>
