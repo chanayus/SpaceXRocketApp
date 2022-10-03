@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import launchNull from "../img/launch-null.webp";
 import { useQuery } from "@apollo/client";
 import { GET_LAUNCH, GET_LATEST_LAUNCH_ID } from "../gql/launchesQuery";
 import dayjs from "dayjs";
@@ -30,7 +29,7 @@ const LaunchDetail = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div
         className="headerContainer"
-        style={{ backgroundImage: `url(${launchRes?.launch.links?.flickr_images[0] === undefined && !launchLoading ? launchNull : launchRes?.launch?.links.flickr_images[0]})` }}
+        style={{ backgroundImage: `url(${launchRes?.launch.links?.flickr_images[0] === undefined && !launchLoading ? "/launch-null.webp" : launchRes?.launch?.links.flickr_images[0]})` }}
       >
         <div className="wrapper" style={{ overflow: "hidden", backgroundColor: "rgba(0, 0, 0, 0.35)", display: "flex", justifyContent: "center" }}>
           <div className="container" style={{ flex: 1, display: "flex", alignItems: "center", width: "100%" }}>
@@ -45,7 +44,7 @@ const LaunchDetail = () => {
                   <h2 className="text-shadow" style={{ marginTop: 10 }}>
                     {launchRes?.launch.rocket.rocket_name}
                   </h2>
-                  <Link to={{ pathname: `/SpaceXRocketApp/rocketDetail/${launchRes?.launch.rocket.rocket.id}` }}>
+                  <Link to={{ pathname: `/rocketDetail/${launchRes?.launch.rocket.rocket.id}` }}>
                     <ViewButton>View Rocket Detail</ViewButton>
                   </Link>
                 </motion.div>
