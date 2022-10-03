@@ -16,7 +16,6 @@ const LaunchDetail = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-
     console.log(id);
     console.log(launchRes);
     // return () => setImgLoading(true);
@@ -96,7 +95,7 @@ const LaunchDetail = () => {
             <b>Launch Year :</b> {launchRes?.launch.launch_year}
           </LI>
           <LI>
-            <b>Launch Date :</b> {dayjs(launchRes?.launch.launch_date_utc).format('DD/MM/YYYY HH:MM A') }
+            <b>Launch Date :</b> {dayjs(launchRes?.launch.launch_date_utc).format("DD/MM/YYYY HH:MM A")}
           </LI>
           <LI>
             <b>Rocket Name :</b> {launchRes?.launch.rocket.rocket_name}
