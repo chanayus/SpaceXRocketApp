@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import rocketBg from "../img/rocket-bg.webp";
-import { GET_ROCKET_NAME } from "../gql/rocketQuery";
-import { useQuery } from "@apollo/client";
+import { useFetch } from "../hooks/useFetch";
 
 const Rocket = () => {
-  const { loading, error, data } = useQuery(GET_ROCKET_NAME);
+  const { loading, data } = useFetch("https://api.spacexdata.com/v3/rockets");
   useEffect(() => {
     window.scroll(0, 0);
-  }, []);
+  }, [loading]);
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className="headerContainer" style={{ backgroundImage: `url(${rocketBg})`, height: "62.5vh" }}>
@@ -29,11 +28,11 @@ const Rocket = () => {
         <AnimatePresence>
           {!loading ? (
             <FlexContainer key="show-data" style={{ marginBottom: 50 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-              {data?.rockets.map((value, index) => (
-                <Link key={index} to={{ pathname: `/rocketDetail/${value?.id}` }} style={{ textDecoration: "none", width: "55vmin" }}>
+              {data.map((value, index) => (
+                <Link key={index} to={{ pathname: `/rocketDetail/${value?.rocket_id}` }} style={{ textDecoration: "none", width: "55vmin" }}>
                   <Card>
                     <h1>{index + 1}</h1>
-                    <p>{value?.name}</p>
+                    <p>{value.rocket_name}</p>
                   </Card>
                 </Link>
               ))}

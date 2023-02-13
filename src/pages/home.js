@@ -15,7 +15,7 @@ import { useQuery } from "@apollo/client";
 import { GET_COMPANY } from "../gql/companyQuery";
 
 const Home = () => {
-  const { loading, error, data } = useQuery(GET_COMPANY);
+  const { loading, data } = useQuery(GET_COMPANY);
 
   useEffect(() => {
     window.scroll(0, 0);

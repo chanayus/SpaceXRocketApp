@@ -6,11 +6,10 @@ import launchBg from "../img/launch-bg.webp";
 import Aos from "aos";
 import SearchBar from "../component/launches/searchBar";
 import LaunchCard from "../component/launches/launchCard";
-import { useQuery } from "@apollo/client";
-import { GET_LAUNCHES } from "../gql/launchesQuery";
+import { useFetch } from "../hooks/useFetch";
 
 const Launches = () => {
-  const { loading, error, data } = useQuery(GET_LAUNCHES);
+  const { loading, data } = useFetch("https://api.spacexdata.com/v3/launches");
 
   const [launches, setLaunches] = useState([]);
   const [year, setYear] = useState([]);
@@ -25,12 +24,14 @@ const Launches = () => {
     Aos.init({ duration: 500, delay: 100 });
 
     const stateHandle = async () => {
-      const set = new Set(data?.launches.map((item) => item.launch_year));
+      const set = new Set(data.map((item) => item.launch_date_utc.slice(0,4)));
       const allYear = Array.from(set).sort((a, b) => a - b);
+
       setYear(allYear);
-      setLaunches(data.launches);
+      setLaunches(data);
     };
     !loading && stateHandle();
+
   }, [loading]);
 
   return (
@@ -47,7 +48,7 @@ const Launches = () => {
         </div>
       </div>
       <div className="container">
-        {!loading && <SearchBar defaultLaunches={data.launches} setLaunches={setLaunches} filter={filter} setFilter={setFilter} year={year} />}
+        {!loading && <SearchBar defaultLaunches={data} setLaunches={setLaunches} filter={filter} setFilter={setFilter} year={year} />}
         <FlexContainer>
           {launches.length === 0 || loading ? (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

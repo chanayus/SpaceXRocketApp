@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const LaunchCard = ({ value, index }) => {
   const [imgLoading, setImgLoading] = useState(true);
-  console.log(value);
+
   return (
     <Card key={index}>
       <div style={{ flex: 0.45, position: "relative" }}>
@@ -29,7 +29,7 @@ const LaunchCard = ({ value, index }) => {
           ) : (
             <h3 style={{ color: "rgb(255, 58, 58)" }}>Launch Fail</h3>
           )}
-          <Link to={{ pathname: `/launchDetail/${value.id}` }} style={{ textDecoration: "none" }}>
+          <Link to={{ pathname: `/launchDetail/${value.flight_number}` }} style={{ textDecoration: "none" }}>
             <ViewButton>View Detail</ViewButton>
           </Link>
         </div>

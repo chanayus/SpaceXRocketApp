@@ -2,10 +2,10 @@ import { gql } from "@apollo/client";
 
 export const GET_LAUNCHES = gql`
   {
-    launches(sort: "launch_year") {
+    launches(sort: "launch_date_utc") {
       id
-      launch_year
       launch_success
+      launch_date_utc
       rocket {
         rocket_name
       }
@@ -54,19 +54,3 @@ export const GET_LATEST_LAUNCH_ID = gql`
   }
 `;
 
-// export const GET_LAUNCHES_DETAIL = gql`
-//   {
-//     launches {
-//       id
-//       launch_year
-//       launch_success
-//       rocket {
-//         rocket_name
-//       }
-//       mission_name
-//       links {
-//         mission_patch_small
-//       }
-//     }
-//   }
-// `;

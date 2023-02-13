@@ -4,11 +4,11 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 
 const client = new ApolloClient({
-  uri: "https://api.spacex.land/graphql/",
+  uri: "https://spacex-production.up.railway.app/",
   cache: new InMemoryCache(),
 });
 
